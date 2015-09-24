@@ -14,7 +14,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "git@github.com:dev9seucondominio/foreman4rails.git"
+set :repo_url, "git@github.com:dev9seucondominio/foreman4rails.git"
 set :branch, "master"
 
 set :pty, true
