@@ -48,13 +48,6 @@ namespace :deploy do
   end
   after "deploy", "deploy:setup_config"
 
-  task :symlink_config do 
-  	on roles(:app) do
-      run "ln -nfs #home/deploy/apps/foreman4rails/shared/config/database.yml #{release_path}/config/database.yml"
-    end
-  end
-  after "deploy:setup_config", "deploy:symlink_config"
-
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:web) do
