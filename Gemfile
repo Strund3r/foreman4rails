@@ -29,6 +29,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 gem 'unicorn'
 
+gem 'foreman', '~> 0.78.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -47,7 +49,7 @@ group :development do
   gem 'capistrano', '~> 3.4.0'
   gem 'capistrano-bundler', '~> 1.1.4'
   gem 'capistrano-rails', '~> 1.1.3'
-  
+
   # Add this if you're using rvm
   gem 'capistrano-rvm', github: "capistrano/rvm"
 end
