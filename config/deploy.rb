@@ -18,7 +18,7 @@ set :repository, "git@github.com:dev9seucondominio/foreman4rails.git"
 set :branch, "master"
 
 set :pty, true
-ssh_options[:forward_agent] = true
+set :forward_agent, true
 
 # Default value for :linked_files is []
 set :linked_files, %w{config/database.yml config/secrets.yml}
