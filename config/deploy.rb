@@ -1,3 +1,6 @@
+# config valid only for current version of Capistrano
+lock '3.4.0'
+
 # Define your server here
 server "159.203.78.204", :web, :app, :db, primary: true
 
