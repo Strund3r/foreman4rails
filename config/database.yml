@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: foreman4rails_production
-  username: foreman4rails
-  password: <%= ENV['FOREMAN4RAILS_DATABASE_PASSWORD'] %>
+  database: foreman4rails
+  username: deploy
+  password: 1234
