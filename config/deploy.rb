@@ -17,7 +17,7 @@ set :scm, "git"
 set :repository, "git@github.com:dev9seucondominio/foreman4rails.git"
 set :branch, "master"
 
-default_run_options[:pty] = true
+set :pty, true
 ssh_options[:forward_agent] = true
 
 # Default value for :linked_files is []
