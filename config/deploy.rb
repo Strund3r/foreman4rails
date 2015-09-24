@@ -4,7 +4,7 @@ lock '3.4.0'
 require "capistrano/bundler"
 
 # Define your server here
-server "159.203.78.204", :web, :app, :db, primary: true
+server "159.203.78.204", roles: %w{web app db}, primary: true
 
 # Set application settings
 set :application, "foreman4rails"
