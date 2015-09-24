@@ -9,7 +9,7 @@ server "159.203.78.204", roles: %w{web app db}, primary: true
 # Set application settings
 set :application, "foreman4rails"
 set :user, "deploy" # As defined on your server
-set :deploy_to, "/home/#{user}/apps/#{application}" # Directory in which the deployment will take place
+set :deploy_to, "/home/deploy/apps/foreman4rails" # Directory in which the deployment will take place
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
@@ -32,7 +32,7 @@ namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}" # Using unicorn as the app server
+      run "/etc/init.d/unicorn_foreman4rails #{command}" # Using unicorn as the app server
     end
   end
 
