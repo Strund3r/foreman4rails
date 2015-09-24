@@ -47,7 +47,7 @@ namespace :deploy do
       puts "Now edit the config files in #{shared_path}."
     end
   end
-  after "deploy:setup", "deploy:setup_config"
+  after "deploy", "deploy:setup_config"
 
   task :symlink_config do 
   	on roles(:app) do
