@@ -65,7 +65,7 @@ namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
   task :export do
     on roles(:app) do
-      run "sudo bundle exec foreman export upstart /etc/init -a foreman4rails -u deploy -l /var/foreman4rails/log"
+      sudo "bundle exec foreman export upstart /etc/init -a foreman4rails -u deploy -l /var/foreman4rails/log"
     end
   end
   
