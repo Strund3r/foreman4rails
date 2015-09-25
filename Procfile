@@ -1,1 +1,1 @@
-web: bundle exec unicorn /home/deploy/apps/foreman4rails/current/config/unicorn.rb -e production
+web: bundle exec unicorn /home/deploy/apps/foreman4rails/current/config/unicorn.rb
