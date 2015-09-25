@@ -1,4 +1,4 @@
-!https://travis-ci.org/dev9seucondominio/foreman4rails.svg!:https://travis-ci.org/dev9seucondominio/foreman4rails
+=for HTML <a href="https://travis-ci.org/dev9seucondominio/foreman4rails"><img src="https://travis-ci.org/dev9seucondominio/foreman4rails.svg"></a>
 == README
 
 This README would normally document whatever steps are necessary to get the
