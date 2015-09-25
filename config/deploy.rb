@@ -60,3 +60,36 @@ namespace :deploy do
   end
   before "deploy", "deploy:check_revision"
 end
+
+namespace :foreman do
+  desc "Export the Procfile to Ubuntu's upstart scripts"
+  task :export do
+    on roles(:app) do
+      run "sudo bundle exec foreman export upstart /etc/init -a foreman4rails -u deploy -l /var/foreman4rails/log"
+    end
+  end
+  
+  desc "Start the application services"
+  task :start do
+    on roles(:app) do
+      sudo "service unicorn_foreman4rails start"
+    end
+  end
+
+  desc "Stop the application services"
+  task :stop do
+    on roles(:app) do
+      sudo "service unicorn_foreman4rails stop"
+    end
+  end
+
+  desc "Restart the application services"
+  task :restart do
+    on roles(:app) do
+      sudo "service unicorn_foreman4rails restart"
+    end
+  end
+end
+
+after "deploy", "foreman:export"
+after "deploy", "foreman:restart"
