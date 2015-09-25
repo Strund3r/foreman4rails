@@ -1,5 +1,3 @@
-<img src="https://travis-ci.org/dev9seucondominio/foreman4rails.svg" alt="Build Status" data-canonical-src="https://travis-ci.org/dev9seucondominio/foreman4rails.svg" style="max-width:100%;"></a>
-
 == README
 
 This README would normally document whatever steps are necessary to get the
