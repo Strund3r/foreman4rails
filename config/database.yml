@@ -1,9 +1,3 @@
-test:
-  adapter: postgresql
-  database: foreman4rails
-  username: deploy
-  password: 1234
-
 production:
   adapter: postgresql
   database: foreman4rails
