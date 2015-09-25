@@ -65,31 +65,41 @@ namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
   task :export do
     on roles(:app) do
-      rvmsudo "bundle exec foreman export upstart /etc/init -a foreman4rails -u deploy -l /var/foreman4rails/log"
+      within current_path do
+        execute :rvm, :exec, "bundle exec foreman export upstart /etc/init --procfile=./Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log"
+      end
     end
+
   end
-  
+
   desc "Start the application services"
   task :start do
     on roles(:app) do
-      rvmsudo "service unicorn_foreman4rails start"
+      within current_path do
+        execute :rvm, :exec, "foreman start #{fetch(:application)}"
+      end
     end
+
   end
 
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
-      rvmsudo "service unicorn_foreman4rails stop"
+      within current_path do
+        execute :rvm, :exec, "foreman stop #{fetch(:application)}"
+      end
     end
   end
 
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-      rvmsudo "service unicorn_foreman4rails restart"
+      within current_path do
+        execute :rvm, :exec, "foreman start #{fetch(:application)} || foreman restart #{fetch(:application)}"
+      end
     end
   end
 end
 
-after "deploy", "foreman:export"
-after "deploy", "foreman:restart"
+after "deploy:publishing", "foreman:export"
+after "deploy:publishing", "foreman:restart"
