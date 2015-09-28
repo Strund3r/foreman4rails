@@ -91,5 +91,5 @@ namespace :foreman do
   end
 end
 
-after "deploy:publishing", "foreman:export"
-after "deploy:publishing", "foreman:restart"
+after "deploy", "foreman:export"
+after "deploy", "foreman:restart"
