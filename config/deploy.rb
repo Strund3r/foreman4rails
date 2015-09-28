@@ -67,7 +67,10 @@ namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
   task :export do
     on roles(:app) do
-        execute "cd #{current_path} && foreman export upstart --app=foreman4rails --user=deploy /etc/init"
+      within current_path do
+        execute "sudo chmod -R 1777 /etc/init/" 
+        execute "foreman export upstart --app=foreman4rails --user=deploy -l #{current_path}/log /etc/init"
+      end
     end
   end
 
