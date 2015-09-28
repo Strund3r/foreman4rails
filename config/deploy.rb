@@ -68,25 +68,20 @@ namespace :foreman do
   task :export do
     on roles(:app) do
         run "cd #{current_path} && foreman export upstart /etc/init --procfile=/home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log"
-      end
     end
-
   end
 
   desc "Start the application services"
   task :start do
     on roles(:app) do
         execute "foreman start #{fetch(:application)}"
-      end
     end
-
   end
 
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
         execute "foreman stop #{fetch(:application)}"
-      end
     end
   end
 
@@ -94,7 +89,6 @@ namespace :foreman do
   task :restart do
     on roles(:app) do
         execute "foreman start #{fetch(:application)} || foreman restart #{fetch(:application)}"
-      end
     end
   end
 end
