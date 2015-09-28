@@ -41,10 +41,11 @@ namespace :deploy do
 
   task :setup_config do
     on roles(:app) do
-#      sudo "ln -nfs #home/deploy/apps/foreman4rails/current/config/nginx.conf /etc/nginx/sites-enabled/foreman4rails"
-#      sudo "ln -nfs #home/deploy/apps/foreman4rails/current/config/unicorn_ini.sh /etc/init.d/unicorn_foreman4rails"
-#      put File.read("config/database.yml"), "#home/deploy/apps/foreman4rails/shared/config/database.yml"
-#      puts "Now edit the config files in #{shared_path}."
+      sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/nginx.conf /etc/nginx/sites-enabled/foreman4rails"
+      sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/unicorn_ini.sh /etc/init.d/unicorn_foreman4rails"
+      execute "chmod +x /etc/init.d/unicorn_foreman4rails"
+      put File.read("config/database.yml"), "#home/deploy/apps/foreman4rails/shared/config/database.yml"
+      puts "Now edit the config files in #{shared_path}."
     end
   end
   after "deploy", "deploy:setup_config"
@@ -67,7 +68,7 @@ namespace :foreman do
   task :export do
     on roles(:app) do
       within current_path do
-        execute "sudo foreman export upstart /etc/init --procfile=/home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log"
+        execute "foreman export upstart /etc/init --procfile=/home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log"
       end
     end
 
