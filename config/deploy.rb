@@ -68,8 +68,8 @@ namespace :foreman do
 #  task :export do
 #    on roles(:app) do
 #        execute "cd #{current_path} && foreman export upstart ."
-    end
-  end
+#    end
+#  end
 
   desc "Start the application services"
   task :start do
