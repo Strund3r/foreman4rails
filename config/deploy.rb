@@ -66,7 +66,7 @@ namespace :foreman do
   task :export do
     on roles(:app) do
       within current_path do
-        execute :rbenv, :exec, "bundle exec foreman export upstart /etc/init --procfile=./Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log"
+        execute :rvm, :exec, "bundle exec foreman export upstart /etc/init --procfile=./Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log"
       end
     end
 
@@ -76,7 +76,7 @@ namespace :foreman do
   task :start do
     on roles(:app) do
       within current_path do
-        execute :rbenv, :exec, "foreman start #{fetch(:application)}"
+        execute :rvm, :exec, "foreman start #{fetch(:application)}"
       end
     end
 
@@ -86,7 +86,7 @@ namespace :foreman do
   task :stop do
     on roles(:app) do
       within current_path do
-        execute :rbenv, :exec, "foreman stop #{fetch(:application)}"
+        execute :rvm, :exec, "foreman stop #{fetch(:application)}"
       end
     end
   end
@@ -95,7 +95,7 @@ namespace :foreman do
   task :restart do
     on roles(:app) do
       within current_path do
-        execute :rbenv, :exec, "foreman start #{fetch(:application)} || foreman restart #{fetch(:application)}"
+        execute :rvm, :exec, "foreman start #{fetch(:application)} || foreman restart #{fetch(:application)}"
       end
     end
   end
