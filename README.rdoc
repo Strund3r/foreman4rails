@@ -1,12 +1,5 @@
 {<img src="https://travis-ci.org/dev9seucondominio/foreman4rails.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/dev9seucondominio/foreman4rails]
 
-<img src="https://camo.githubusercontent.com/860f1558d8992edfbf1e89f81da5b1c9e02ea37a/68747470733a2f2f7472617669732d63692e6f72672f64646f6c6c61722f666f72656d616e2e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ddollar/foreman.svg?branch=master" style="max-width:100%;">
-
-
-
-
-
-
 == README
 
 This README would normally document whatever steps are necessary to get the
