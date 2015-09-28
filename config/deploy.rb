@@ -73,7 +73,7 @@ namespace :foreman do
   task :start do
     on roles(:app) do
         execute "chmod +x /etc/init.d/unicorn_foreman4rails"
-        execute "sudo service unicorn_foreman4rails start"
+        execute "foreman start"
     end
   end
 
