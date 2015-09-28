@@ -74,22 +74,22 @@ namespace :foreman do
   desc "Start the application services"
   task :start do
     on roles(:app) do
-        execute "foreman start #{fetch(:application)}"
+        execute "foreman start"
     end
   end
 
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
-        execute "foreman stop #{fetch(:application)}"
+        execute "foreman stop"
     end
   end
 
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-        execute "foreman start #{fetch(:application)}"
-        execute "foreman restart #{fetch(:application)}"
+        execute "foreman start"
+        execute "foreman restart"
     end
   end
 end
