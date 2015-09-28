@@ -74,7 +74,7 @@ namespace :foreman do
     on roles(:app) do
         execute "chmod +x /etc/init.d/unicorn_foreman4rails"
         execute "cd /home/deploy/apps/foreman4rails/current"
-        execute "foreman start"
+        run "foreman start"
     end
   end
 
