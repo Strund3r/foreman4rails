@@ -82,13 +82,6 @@ namespace :foreman do
         execute "foreman stop #{fetch(:application)}"
     end
   end
-
-  desc "Restart the application services"
-  task :restart do
-    on roles(:app) do
-        execute "foreman restart #{fetch(:application)}"
-    end
-  end
 end
 
 #after "deploy", "foreman:export"
