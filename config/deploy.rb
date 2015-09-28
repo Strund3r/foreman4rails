@@ -68,8 +68,6 @@ namespace :foreman do
   task :export do
     on roles(:app) do
         execute "sudo chmod -R 1777 /etc/init/"
-        execute "gem install foreman"
-        execute "foreman -v"
         execute "foreman export upstart /etc/init --app=#{fetch(:application)} --user=#{fetch(:user)}"
     end
   end
@@ -91,8 +89,7 @@ namespace :foreman do
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-        execute "service start foreman4rails"
-        execute "foreman restart foreman4rails"
+        execute "service start foreman4rails || service restart foreman4rails"
     end
   end
 end
