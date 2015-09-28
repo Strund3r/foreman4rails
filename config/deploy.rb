@@ -69,7 +69,7 @@ namespace :foreman do
     on roles(:app) do
       within current_path do
         execute "sudo chmod -R 1777 /etc/init/" 
-        execute "foreman export upstart --app=foreman4rails --user=deploy -l #{current_path}/log /etc/init"
+        execute "foreman export upstart --app=#{fetch(:application)} --user=#{fetch(:user)} -l #{current_path}/log /etc/init"
       end
     end
   end
