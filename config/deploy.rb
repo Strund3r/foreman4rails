@@ -64,12 +64,12 @@ namespace :deploy do
 end
 
 namespace :foreman do
-#  desc "Export the Procfile to Ubuntu's upstart scripts"
-#  task :export do
-#    on roles(:app) do
+  desc "Export the Procfile to Ubuntu's upstart scripts"
+  task :export do
+    on roles(:app) do
         execute "cd #{current_path} && foreman export upstart --app=foreman4rails --user=deploy /etc/init"
-#    end
-#  end
+    end
+  end
 
   desc "Start the application services"
   task :start do
