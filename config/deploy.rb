@@ -67,10 +67,8 @@ namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
   task :export do
     on roles(:app) do
-      within current_path do
         execute "sudo chmod -R 1777 /etc/init/" 
         execute "foreman export upstart --app=#{fetch(:application)} --user=#{fetch(:user)} -l #{current_path}/log /etc/init"
-      end
     end
   end
 
