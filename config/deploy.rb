@@ -62,12 +62,12 @@ namespace :deploy do
 end
 
 namespace :foreman do
-  desc "Export the Procfile to Ubuntu's upstart scripts"
-  task :export do
-    on roles(:app) do
-        execute "bundle exec foreman export upstart /etc/init --procfile=./Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log"
-    end
-  end
+#  desc "Export the Procfile to Ubuntu's upstart scripts"
+#  task :export do
+#    on roles(:app) do
+#        execute "bundle exec foreman export upstart /etc/init --procfile=./Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log"
+#    end
+#  end
 
   desc "Start the application services"
   task :start do
