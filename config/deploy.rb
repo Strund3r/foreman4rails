@@ -85,4 +85,6 @@ namespace :foreman do
 end
 
 #after "deploy", "foreman:export"
-after "deploy", "foreman:restart"
+#after "deploy", "foreman:restart"
+after "deploy", "foreman:stop"
+after "foreman:stop", "foreman:start"
