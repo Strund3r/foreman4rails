@@ -12,6 +12,7 @@ set :user, "deploy" # As defined on your server
 set :deploy_to, "/home/deploy/apps/foreman4rails" # Directory in which the deployment will take place
 set :deploy_via, :remote_cache
 set :use_sudo, false
+set :current_path, "/home/deploy/apps/foreman4rails/current"
 
 set :scm, "git"
 set :repo_url, "git@github.com:dev9seucondominio/foreman4rails.git"
