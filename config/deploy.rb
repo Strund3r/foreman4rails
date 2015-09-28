@@ -68,7 +68,7 @@ namespace :foreman do
   task :export do
     on roles(:app) do
       within current_path do
-        execute "cd #{current_path} && foreman export upstart /etc/init --procfile=/home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log"
+        run "cd #{current_path} && foreman export upstart /etc/init --procfile=/home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log"
       end
     end
 
