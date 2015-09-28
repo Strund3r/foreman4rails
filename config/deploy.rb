@@ -86,7 +86,7 @@ namespace :foreman do
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-        execute "foreman start #{fetch(:application)} || foreman restart #{fetch(:application)}"
+        execute "foreman start #{fetch(:application)}" || execute "foreman restart #{fetch(:application)}"
     end
   end
 end
