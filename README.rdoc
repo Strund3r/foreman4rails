@@ -1,5 +1,7 @@
 {<img src="https://travis-ci.org/dev9seucondominio/foreman4rails.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/dev9seucondominio/foreman4rails]
 
+{<img src="http://inch-ci.org/github/dev9seucondominio/foreman4rails.svg?branch=master" alt="Inline docs" />}[http://inch-ci.org/github/dev9seucondominio/foreman4rails]
+
 == README
 
 This README would normally document whatever steps are necessary to get the
