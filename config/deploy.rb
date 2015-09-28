@@ -72,14 +72,14 @@ namespace :foreman do
   desc "Start the application services"
   task :start do
     on roles(:app) do
-        execute "/etc/init.d/unicorn_foreman4rails start}"
+        execute "sudo /etc/init.d/unicorn_foreman4rails start}"
     end
   end
 
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
-        execute "/etc/init.d/unicorn_foreman4rails stop}"
+        execute "sudo /etc/init.d/unicorn_foreman4rails stop}"
     end
   end
 end
