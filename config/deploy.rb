@@ -76,7 +76,6 @@ namespace :foreman do
   desc "Start the application services"
   task :start do
     on roles(:app) do
-      in current_path do
         execute "foreman start #{fetch(:application)}"
       end
     end
@@ -86,7 +85,6 @@ namespace :foreman do
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
-      in current_path do
         execute "foreman stop #{fetch(:application)}"
       end
     end
@@ -95,7 +93,6 @@ namespace :foreman do
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-      in current_path do
         execute "foreman start #{fetch(:application)} || foreman restart #{fetch(:application)}"
       end
     end
