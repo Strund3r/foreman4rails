@@ -90,9 +90,9 @@ namespace :foreman do
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-        execute "sudo service foreman4rails stop"
-        execute "sudo service foreman4rails start"
-        execute "sudo service foreman4rails restart"
+        execute "sudo service foreman stop"
+        execute "sudo service foreman start"
+        execute "sudo service foreman restart"
     end
   end
 end
