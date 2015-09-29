@@ -38,7 +38,7 @@ set :foreman_roles, :all
 set :foreman_template, 'upstart'
 set :foreman_export_path, ->{ File.join(Dir.home, '.init') }
 set :foreman_options, ->{ {
-  app: application,
+  app: "foreman4rails",
   log: File.join(shared_path, 'log')
 } }
 
