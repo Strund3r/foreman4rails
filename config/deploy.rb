@@ -102,6 +102,7 @@ end
 #   end
 # end
 
+after :'deploy:setup_config', :'foreman:restart'
 # after "deploy:setup_config"#, "foreman:export"
 #after "foreman:export", "foreman:restart"
 #after "foreman:export", "foreman:goforeman"
