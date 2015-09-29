@@ -76,23 +76,21 @@ namespace :foreman do
   desc "Start the application services"
   task :start do
     on roles(:app) do
-        execute "sudo service foreman4rails start"
+        execute "start #{fetch(:application)}"
     end
   end
 
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
-        execute "sudo service foreman4rails-foreman4rails stop"
+        execute "stop #{fetch(:application)}"
     end
   end
 
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-        execute "/home/deploy/.rvm/bin/rvm all do foreman stop #{fetch(:application)}"
-        execute "/home/deploy/.rvm/bin/rvm all do foreman start #{fetch(:application)}"
-        execute "/home/deploy/.rvm/bin/rvm all do foreman restart #{fetch(:application)}"
+        execute "start #{fetch(:application)} || restart #{fetch(:application)}"
     end
   end
 end
