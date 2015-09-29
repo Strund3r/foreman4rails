@@ -33,12 +33,12 @@ require 'capistrano/rails/assets'
 require 'capistrano/foreman'
 
 # Default settings
-set :foreman_use_sudo, false # Set to :rbenv for rbenv sudo, :rvm for rvmsudo or true for normal sudo
+set :foreman_use_sudo, true # Set to :rbenv for rbenv sudo, :rvm for rvmsudo or true for normal sudo
 set :foreman_roles, :all
 set :foreman_template, 'upstart'
 set :foreman_export_path, ->{ File.join(Dir.home, '.init') }
 set :foreman_options, ->{ {
-  app: "foreman4rails",
+  app: application,
   log: File.join(shared_path, 'log')
 } }
 
