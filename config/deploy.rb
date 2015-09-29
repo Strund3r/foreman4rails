@@ -69,27 +69,29 @@ namespace :foreman do
     on roles(:app) do
         execute "sudo chmod -R 1777 /etc/init/"
         foreman_export = "foreman export upstart /etc/init --app=#{fetch(:application)} --user=#{fetch(:user)}"
+        execute foreman_export
     end
   end
 
   desc "Start the application services"
   task :start do
     on roles(:app) do
-        execute "service start foreman4rails"
+        execute "start foreman4rails"
     end
   end
 
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
-        execute "service stop foreman4rails"
+        execute "stop foreman4rails-foreman4rails"
     end
   end
 
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-        execute "service start foreman4rails || service restart foreman4rails"
+        execute "start foreman4rails"
+        execute "restart foreman4rails-foreman4rails-1"
     end
   end
 end
