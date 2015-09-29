@@ -73,6 +73,13 @@ namespace :foreman do
     end
   end
 
+  desc "Start Foreman"
+  task :go do
+    on roles(:app) do
+      execute "cd /home/deploy/apps/foreman4rails/current/ && foreman start"
+    end
+  end
+
   desc "Start the application services"
   task :start do
     on roles(:app) do
