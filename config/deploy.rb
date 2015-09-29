@@ -76,22 +76,22 @@ namespace :foreman do
   desc "Start the application services"
   task :start do
     on roles(:app) do
-        execute "start foreman4rails"
+        execute "sudo start foreman4rails"
     end
   end
 
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
-        execute "stop foreman4rails-foreman4rails"
+        execute "sudo stop foreman4rails-foreman4rails"
     end
   end
 
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-        execute "start foreman4rails"
-        execute "restart foreman4rails-foreman4rails-1"
+        execute "sudo start foreman4rails"
+        execute "sudo restart foreman4rails-foreman4rails-1"
     end
   end
 end
