@@ -68,8 +68,7 @@ namespace :foreman do
   task :export do
     on roles(:app) do
         execute "sudo chmod -R 1777 /etc/init/"
-        execute "foreman export upstart /etc/init --app=#{fetch(:application)} --user=#{fetch(:user)}"        
-        execute "sudo gem install bundler"
+        execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init --app=#{fetch(:application)} --user=#{fetch(:user)}"
     end
   end
 
@@ -96,5 +95,5 @@ namespace :foreman do
   end
 end
 
-after "deploy", "foreman:export"
-after "deploy", "foreman:restart"
+after "deploy:setup_config", "foreman:export"
+after "deploy:setup_config", "foreman:restart"
