@@ -77,7 +77,7 @@ namespace :foreman do
   task :goforeman do
     on roles(:app) do
       execute "cd /home/deploy/apps/foreman4rails/current/"
-      execute "/home/deploy/.rvm/bin/rvm all do foreman start &"
+      execute "/home/deploy/.rvm/bin/rvm all do foreman start"
     end
   end
 
