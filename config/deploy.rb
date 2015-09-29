@@ -68,7 +68,7 @@ namespace :foreman do
   task :export do
     on roles(:app) do
         execute "sudo chmod -R 1777 /etc/init/"
-        execute "foreman export upstart /etc/init --app=#{fetch(:application)} --user=#{fetch(:user)}"
+        foreman_export = "foreman export upstart /etc/init --app=#{fetch(:application)} --user=#{fetch(:user)}"
     end
   end
 
