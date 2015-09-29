@@ -35,6 +35,7 @@ namespace :deploy do
     task command do
       on roles(:app), except: {no_release: true} do
         run "/etc/init.d/unicorn_foreman4rails #{command}" # Using unicorn as the app server
+        run "sudo gem install bundler"
       end
     end
   end
