@@ -104,4 +104,4 @@ end
 
 after "deploy:setup_config", "foreman:export"
 after "foreman:export", "foreman:goforeman"
-after "foreman:goforeman", "foreman:restart"
+after "foreman:export", "foreman:restart"
