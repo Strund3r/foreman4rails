@@ -74,7 +74,7 @@ namespace :foreman do
   end
 
   desc "Start Foreman"
-  task :go do
+  task :goforeman do
     on roles(:app) do
       execute "cd /home/deploy/apps/foreman4rails/current/ && foreman start"
     end
@@ -103,4 +103,5 @@ namespace :foreman do
 end
 
 after "deploy:setup_config", "foreman:export"
-after "deploy:setup_config", "foreman:restart"
+after "foreman:export", "foreman:goforeman"
+after "foreman:goforeman", "foreman:restart"
