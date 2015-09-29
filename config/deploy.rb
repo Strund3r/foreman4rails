@@ -103,5 +103,5 @@ namespace :foreman do
 end
 
 after "deploy:setup_config", "foreman:export"
-after "foreman:export", "foreman:goforeman"
 after "foreman:export", "foreman:restart"
+after "foreman:export", "foreman:goforeman"
