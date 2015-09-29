@@ -29,6 +29,8 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
+fetch(:rvm_map_bins, []).push 'foreman'
+
 namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
