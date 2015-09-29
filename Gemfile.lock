@@ -6,13 +6,6 @@ GIT
       capistrano (~> 3.0)
       sshkit (~> 1.2)
 
-GIT
-  remote: git://github.com/koenpunt/capistrano-foreman.git
-  revision: cdb65fb2b20e5a1f6f46f1661fea354ae8ff1bf0
-  specs:
-    capistrano-foreman (0.0.1)
-      capistrano (~> 3.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -183,7 +176,6 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.4.0)
   capistrano-bundler (~> 1.1.4)
-  capistrano-foreman!
   capistrano-rails (~> 1.1.3)
   capistrano-rvm!
   coffee-rails (~> 4.1.0)
