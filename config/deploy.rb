@@ -35,7 +35,6 @@ namespace :deploy do
     task command do
       on roles(:app), except: {no_release: true} do
         run "/etc/init.d/unicorn_foreman4rails #{command}" # Using unicorn as the app server
-        run "sudo gem install bundler"
       end
     end
   end
@@ -70,6 +69,7 @@ namespace :foreman do
     on roles(:app) do
         execute "sudo chmod -R 1777 /etc/init/"
         execute "foreman export upstart /etc/init --app=#{fetch(:application)} --user=#{fetch(:user)}"        
+        execute "sudo gem install bundler"
     end
   end
 
@@ -96,5 +96,5 @@ namespace :foreman do
   end
 end
 
-after "deploy:publishing", "foreman:export"
-after "deploy:publishing", "foreman:restart"
+after "deploy", "foreman:export"
+after "deploy", "foreman:restart"
