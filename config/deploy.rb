@@ -44,7 +44,7 @@ namespace :deploy do
       sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/nginx.conf /etc/nginx/sites-enabled/foreman4rails"
       sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/unicorn_ini.sh /etc/init.d/unicorn_foreman4rails"
       execute "chmod +x /etc/init.d/unicorn_foreman4rails"
-      put File.read("config/database.yml"), "/home/deploy/apps/foreman4rails/shared/config/database.yml"
+#     put File.read("config/database.yml"), "/home/deploy/apps/foreman4rails/shared/config/database.yml"
       puts "Now edit the config files in #{shared_path}."
     end
   end
