@@ -29,8 +29,6 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
-fetch(:rvm_map_bins, []).push 'foreman'
-
 namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
@@ -65,46 +63,45 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
 end
 
-# namespace :foreman do
-#   desc "Export the Procfile to Ubuntu's upstart scripts"
-#   task :export do
-#     on roles(:app) do
-#         execute "sudo chmod -R 1777 /etc/init/"
-#         execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init --procfile /home/deploy/apps/foreman4rails/current/Procfile --app=#{fetch(:application)} --user=#{fetch(:user)}"
-#         execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-foreman4rails.conf /etc/init/foreman4rails-foreman4rails-1.conf"
-#     end
-#   end
+namespace :foreman do
+  desc "Export the Procfile to Ubuntu's upstart scripts"
+  task :export do
+    on roles(:app) do
+        execute "sudo chmod -R 1777 /etc/init/"
+        execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init --procfile /home/deploy/apps/foreman4rails/current/Procfile --app=#{fetch(:application)} --user=#{fetch(:user)}"
+        execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-foreman4rails.conf /etc/init/foreman4rails-foreman4rails-1.conf"
+    end
+  end
 
-#   desc "Start Foreman"
-#   task :goforeman do
-#     on roles(:app) do
-#       execute "cd /home/deploy/apps/foreman4rails/current/ && /home/deploy/.rvm/bin/rvm all do foreman start & >> /tmp/teste.txt 2<&1"
-#     end
-#   end
+  desc "Start Foreman"
+  task :goforeman do
+    on roles(:app) do
+      execute "cd /home/deploy/apps/foreman4rails/current/ && /home/deploy/.rvm/bin/rvm all do foreman start &"
+    end
+  end
 
-#   desc "Start the application services"
-#   task :start do
-#     on roles(:app) do
-#         execute "start #{fetch(:application)}"
-#     end
-#   end
+  desc "Start the application services"
+  task :start do
+    on roles(:app) do
+        execute "start #{fetch(:application)}"
+    end
+  end
 
-#   desc "Stop the application services"
-#   task :stop do
-#     on roles(:app) do
-#         execute "stop #{fetch(:application)}"
-#     end
-#   end
+  desc "Stop the application services"
+  task :stop do
+    on roles(:app) do
+        execute "stop #{fetch(:application)}"
+    end
+  end
 
-#   desc "Restart the application services"
-#   task :restart do
-#     on roles(:app) do
-#         execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
-#     end
-#   end
-# end
+  desc "Restart the application services"
+  task :restart do
+    on roles(:app) do
+        execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
+    end
+  end
+end
 
-after :'deploy:setup_config', :'foreman:restart'
-# after "deploy:setup_config"#, "foreman:export"
-#after "foreman:export", "foreman:restart"
-#after "foreman:export", "foreman:goforeman"
+after "deploy:setup_config", "foreman:export"
+after "foreman:export", "foreman:goforeman"
+after "foreman:export", "foreman:restart"
