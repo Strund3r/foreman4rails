@@ -68,7 +68,7 @@ namespace :foreman do
   task :export do
     on roles(:app) do
         execute "sudo chmod -R 1777 /etc/init/"
-        execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init --app=#{fetch(:application)} --user=#{fetch(:user)}"
+        execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init --procfile /home/deploy/apps/foreman4rails/current/Procfile --app=#{fetch(:application)} --user=#{fetch(:user)}"
     end
   end
 
