@@ -205,7 +205,7 @@ Adicionar ao deploy.rb: # config valid only for current version of Capistrano
 		              sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/nginx.conf /etc/nginx/sites-enabled/foreman4rails"
 		              sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/unicorn_ini.sh /etc/init.d/unicorn_foreman4rails"
 		              execute "chmod +x /etc/init.d/unicorn_foreman4rails"
-		              put File.read("config/database.yml"), "#home/deploy/apps/foreman4rails/shared/config/database.yml"
+		              #put File.read("config/database.yml"), "#home/deploy/apps/foreman4rails/shared/config/database.yml"
 		              puts "Now edit the config files in #{shared_path}."
     			    end
   			  end
@@ -229,35 +229,45 @@ Adicionar ao deploy.rb: # config valid only for current version of Capistrano
 			  task :export do
 			    on roles(:app) do
 			        execute "sudo chmod -R 1777 /etc/init/"
-			        execute "foreman export upstart /etc/init --app=#{fetch(:application)} --user=#{fetch(:user)}"
-			    end
+        			execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init --procfile /home/deploy/apps/foreman4rails/current/Procfile --app=#{fetch(:application)} --user=#{fetch(:user)}"
+        			execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
+        			execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf"
+				end
 			  end
+			
+			  #desc "Start the application services"
+			  #task :start do
+			  #  on roles(:app) do
+			  #      execute "service start foreman4rails"
+			  #  end
+			  #end
 			
 			  desc "Start the application services"
 			  task :start do
 			    on roles(:app) do
-			        execute "service start foreman4rails"
+			        execute "start #{fetch(:application)}"
 			    end
 			  end
-			
+
 			  desc "Stop the application services"
 			  task :stop do
 			    on roles(:app) do
-			        execute "service stop foreman4rails"
+			        execute "stop #{fetch(:application)}"
 			    end
 			  end
-			
+
 			  desc "Restart the application services"
 			  task :restart do
 			    on roles(:app) do
-			        execute "service start foreman4rails || service restart foreman4rails"
+			#        execute "sudo stop #{fetch(:application)}"
+			        execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
 			    end
 			  end
 			end
-			
-			after "deploy:publishing", "foreman:export"
-			after "deploy:publishing", "foreman:restart"
 
+			after "deploy:setup_config", "foreman:export"
+			# after "foreman:export", "foreman:goforeman"
+			after "foreman:export", "foreman:restart"
 
 
 
