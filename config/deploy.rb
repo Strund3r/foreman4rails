@@ -73,8 +73,6 @@ namespace :app do
 end
 before "rvm1:install:rvm", "app:update_rvm_key"
 
-namespace :rvm1 do
-  task :install_
 before 'deploy', 'rvm1:install:rvm'  # install/update RVM
 before 'deploy', 'rvm1:install:ruby'  # install/update Ruby
 before 'deploy', 'rvm1:install:gems'  # install/update gems from Gemfile into gemset
