@@ -17,7 +17,7 @@ set :current_path, "/home/deploy/apps/foreman4rails/current"
 
 set :scm, "git"
 set :repo_url, "git@github.com:dev9seucondominio/foreman4rails.git"
-set :branch, "master"
+set :branch, "automatizar-nginx-unicorn"
 
 set :pty, true
 set :forward_agent, true
