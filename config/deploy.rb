@@ -100,7 +100,7 @@ namespace :foreman do
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-        execute "sudo stop #{fetch(:application)}"
+#        execute "sudo stop #{fetch(:application)}"
         execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
     end
   end
