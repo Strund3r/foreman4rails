@@ -6,6 +6,7 @@ require "capistrano/bundler"
 # Define your server here
 server "159.203.78.204", roles: %w{web app db}, primary: true
 
+
 # Set application settings
 set :application, "foreman4rails"
 set :user, "deploy" # As defined on your server
