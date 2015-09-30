@@ -76,7 +76,7 @@ namespace :app do
     execute "rvm install 2.2.3"
   end
 end
-before "rvm1:install:rvm", "rvm:check"
+before "rvm1:install:rvm", "app:update_rvm_key"
 after "app:update_rvm_key", "app:install_rvm"
 
 before 'deploy:check_revision', 'rvm1:install:rvm'   # install/update RVM
