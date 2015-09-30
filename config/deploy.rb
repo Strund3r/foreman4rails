@@ -68,7 +68,7 @@ namespace :foreman do
   task :export do
     on roles(:app) do
         execute "sudo chmod -R 1777 /etc/init/"
-        sudo "rm /etc/init/foreman4rails-web-1.conf"
+#        sudo "rm /etc/init/foreman4rails-web-1.conf"
         execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init --procfile /home/deploy/apps/foreman4rails/current/Procfile --app=#{fetch(:application)} --user=#{fetch(:user)}"
 #        sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/foreman4rails-web-1.conf /etc/init/foreman4rails-web-1.conf"
         execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf"
