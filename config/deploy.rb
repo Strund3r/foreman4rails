@@ -99,7 +99,7 @@ namespace :foreman do
   task :restart do
     on roles(:app) do
         execute "sudo stop #{fetch(:application)}"
-        execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
+        execute "sudo start foreman4rails-web-1 || sudo restart #{fetch(:application)}"
     end
   end
 end
