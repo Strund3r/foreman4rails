@@ -71,18 +71,18 @@ namespace :app do
   task :update_rvm_key do
     execute :gpg, "--keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
   end
-  desc "install_rvm"
-  task :install do
+
+  task :install_rvm do
     execute "rvm install 2.2.3"
   end
 end
 before "rvm1:install:rvm", "app:update_rvm_key"
 after "app:update_rvm_key", "app:install_rvm"
 
-before 'deploy', 'rvm1:install:rvm'   # install/update RVM
-before 'deploy', 'rvm1:install:ruby'  # install/update Ruby
-before 'deploy', 'rvm1:alias:create'
-before 'deploy', 'rvm1:install:gems'  # install/update gems from Gemfile into gemset
+before 'deploy:check_revision', 'rvm1:install:rvm'   # install/update RVM
+before 'deploy:check_revision', 'rvm1:install:ruby'  # install/update Ruby
+before 'deploy:check_revision', 'rvm1:alias:create'
+before 'deploy:check_revision', 'rvm1:install:gems'  # install/update gems from Gemfile into gemset
 
 namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
