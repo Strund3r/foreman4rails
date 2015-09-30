@@ -28,6 +28,8 @@ set :linked_files, %w{config/database.yml config/secrets.yml}
 # Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
+set :rvm1_ruby_version, "ruby-2.2.3-p173"
+
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :deploy do
@@ -70,6 +72,9 @@ namespace :app do
   end
 end
 before "rvm1:install:rvm", "app:update_rvm_key"
+
+namespace :rvm1 do
+  task :install_
 before 'deploy', 'rvm1:install:rvm'  # install/update RVM
 before 'deploy', 'rvm1:install:ruby'  # install/update Ruby
 before 'deploy', 'rvm1:install:gems'  # install/update gems from Gemfile into gemset
