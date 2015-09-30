@@ -50,6 +50,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.1.4'
   gem 'capistrano-rails', '~> 1.1.3'
   gem 'capistrano-unicorn-nginx', '~> 3.2.0'
+  gem 'rvm1-capistrano3', require: false
 
   # Add this if you're using rvm
   gem 'capistrano-rvm', github: "capistrano/rvm"
