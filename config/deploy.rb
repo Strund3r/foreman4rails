@@ -122,7 +122,7 @@ namespace :unicorn do
   desc "Install unicorn"
   task :uni do
     on roles(:web) do
-      execute "sudo apt-get install unicorn"
+      execute "sudo apt-get -y install unicorn"
     end
   end
 end
