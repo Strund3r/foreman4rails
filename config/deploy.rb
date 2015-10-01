@@ -28,7 +28,6 @@ set :linked_files, %w{config/database.yml config/secrets.yml}
 # Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-set :rvm1_alias_name, 'foreman4rails'
 
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
@@ -62,7 +61,7 @@ namespace :deploy do
         puts "Run `git push` to sync changes."
 #        exit
       end
-    end  
+    end
   end
   before "deploy", "deploy:check_revision"
 end
