@@ -47,7 +47,7 @@ namespace :deploy do
       sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/nginx.conf /etc/nginx/sites-enabled/foreman4rails"
       sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/unicorn_ini.sh /etc/init.d/unicorn_foreman4rails"
       execute "chmod +x /etc/init.d/unicorn_foreman4rails"
-#     put File.read("config/database.yml"), "/home/deploy/apps/foreman4rails/shared/config/database.yml"
+      put File.read("config/database.yml"), "/home/deploy/apps/foreman4rails/shared/config/database.yml"
       puts "Now edit the config files in #{shared_path}."
     end
   end
@@ -102,8 +102,8 @@ namespace :foreman do
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-        execute "sudo stop #{fetch(:application)}"
-#        execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
+#        execute "sudo stop #{fetch(:application)}"
+        execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
     end
   end
 end
@@ -118,15 +118,6 @@ namespace :nginx do
 end
 before "deploy", "nginx:nginx"
 
-namespace :unicorn do
-  desc "Install unicorn"
-  task :uni do
-    on roles(:web) do
-      execute "sudo apt-get -y install unicorn"
-    end
-  end
-end
-before "deploy", "unicorn:uni"
 
 after "deploy:setup_config", "foreman:export"
 # after "foreman:export", "foreman:goforeman"
