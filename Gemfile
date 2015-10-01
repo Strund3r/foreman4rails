@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'sqlite3'
+# gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -50,7 +51,7 @@ group :development do
 #  gem 'capistrano-bundler', '~> 1.1.4'
   gem 'capistrano-rails', '~> 1.1.3'
   gem 'capistrano-unicorn-nginx', '~> 3.2.0'
-  gem 'rvm1-capistrano3', '~> 1.3.2.2'
+  # gem 'rvm1-capistrano3', '~> 1.3.2.2'
   gem 'capistrano-safe-deploy-to', '~> 1.1.1'
 
   # Add this if you're using rvm

@@ -1,5 +1,10 @@
 production:
-  adapter: postgresql
+  adapter: sqlite3
   database: foreman4rails
-  username: deploy
-  password: 1234
+  pool: 5
+  timeout: 5000
+development:
+  adapter: sqlite3
+  database: foreman4rails
+  pool: 5
+  timeout: 5000
