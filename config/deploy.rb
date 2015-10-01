@@ -122,8 +122,7 @@ namespace :unicorn do
   desc "Install unicorn"
   task :uni do
     on roles(:web) do
-      execute "cd /home/deploy/apps/foreman4rails/current"
-      run "bundle"
+      execute "sudo apt-get install unicorn"
     end
   end
 end
