@@ -117,6 +117,16 @@ namespace :nginx do
   end
 end
 
+namespace :unicorn do
+  desc "Install unicorn"
+  task :uni do
+    on roles(:web) do
+      execute "cd /home/deploy/apps/foreman4rails/current"
+      run "bundle"
+    end
+  end
+end
+
 before "deploy", "nginx:nginx"
 
 after "deploy:setup_config", "foreman:export"
