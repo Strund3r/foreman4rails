@@ -1,3 +1,8 @@
+test:
+  adapter: sqlite3
+  database: foreman4rails
+  pool: 5
+  timeout: 5000
 production:
   adapter: sqlite3
   database: foreman4rails
