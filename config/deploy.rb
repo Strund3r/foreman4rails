@@ -108,6 +108,18 @@ namespace :foreman do
   end
 end
 
+namespace :nginx do
+  desc "Install nginx"
+  task :nginx do
+    on roles(:web) do
+      execute "gpg --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7 / gpg --armor --export 561F9B9CAC40B2F7 | sudo apt-key add -"
+      execute "sudo apt-get install nginx-full"
+    end
+  end
+end
+
+before "deploy", "nginx:nginx"
+
 after "deploy:setup_config", "foreman:export"
 # after "foreman:export", "foreman:goforeman"
 after "foreman:export", "foreman:restart"
