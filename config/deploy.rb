@@ -109,10 +109,9 @@ namespace :foreman do
 end
 
 namespace :nginx do
-  desc "Install nginx and foreman"
+  desc "Install nginx"
   task :nginx do
     on roles(:web) do
-      execute "gem install foreman"
       execute "sudo apt-get -y install nginx-full"
     end
   end
