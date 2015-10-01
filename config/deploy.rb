@@ -116,6 +116,7 @@ namespace :nginx do
     end
   end
 end
+before "deploy", "nginx:nginx"
 
 namespace :unicorn do
   desc "Install unicorn"
@@ -126,8 +127,7 @@ namespace :unicorn do
     end
   end
 end
-
-before "deploy", "nginx:nginx"
+before "deploy", "unicorn:uni"
 
 after "deploy:setup_config", "foreman:export"
 # after "foreman:export", "foreman:goforeman"
