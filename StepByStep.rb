@@ -219,11 +219,11 @@ Adicionar ao deploy.rb: # config valid only for current version of Capistrano
 				puts "Run `git push` to sync changes."
         			exit
       			      end
-       			    end  
+       			    end
   			  end
   			  before "deploy", "deploy:check_revision"
 		        end
-		        
+
 		        namespace :foreman do
 			  desc "Export the Procfile to Ubuntu's upstart scripts"
 			  task :export do
@@ -234,14 +234,14 @@ Adicionar ao deploy.rb: # config valid only for current version of Capistrano
         			execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf"
 				end
 			  end
-			
+
 			  #desc "Start the application services"
 			  #task :start do
 			  #  on roles(:app) do
 			  #      execute "service start foreman4rails"
 			  #  end
 			  #end
-			
+
 			  desc "Start the application services"
 			  task :start do
 			    on roles(:app) do
@@ -301,7 +301,7 @@ Criar nginx.conf na pasta config e adiconar o conteúdo:	upstream unicorn {
 							  }
 
 							  try_files $uri/index.html $uri @unicorn;
-							  
+
 							  location @unicorn {
 							    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 							    proxy_set_header Host $http_host;
@@ -320,26 +320,26 @@ Criar nginx.conf na pasta config e adiconar o conteúdo:	upstream unicorn {
 
 Criar unicorn.conf na pasta config e adiconar o conteúdo:	# Define your root directory
 								root = "/home/deploy/apps/foreman4rails/current"
-	
+
 								# Define worker directory for Unicorn
 								working_directory root
-	
+
 								# Location of PID file
 								pid "#{root}/tmp/pids/unicorn.pid"
-	
+
 								# Define Log paths
 								stderr_path "#{root}/log/unicorn.log"
 								stdout_path "#{root}/log/unicorn.log"
-	
+
 								# Listen on a UNIX data socket
 								listen "/tmp/unicorn.foreman4rails.sock"
-	
+
 								# 16 worker processes for production environment
 								worker_processes 16
-	
+
 								# Load rails before forking workers for better worker spawn time
 								preload_app true
-	
+
 								# Restart workes hangin' out for more than 240 secs
 								timeout 240
 
@@ -358,7 +358,7 @@ Criar unicorn_ini.sh na pasta config e adiconar o conteúdo:	#!/bin/sh
 								# Description:       Start, stop, restart unicorn server for a specific application.
 								### END INIT INFO
 								set -e
-								
+
 								# Feel free to change any of the following variables for your app:
 								TIMEOUT=${TIMEOUT-60}
 								APP_ROOT=/home/deploy/apps/foreman4rails/current
@@ -366,17 +366,17 @@ Criar unicorn_ini.sh na pasta config e adiconar o conteúdo:	#!/bin/sh
 								CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
 								AS_USER=deploy
 								set -u
-								
+
 								OLD_PIN="$PID.oldbin"
-								
+
 								sig () {
 								  test -s "$PID" && kill -$1 `cat $PID`
 								}
-								
+
 								oldsig () {
 								  test -s $OLD_PIN && kill -$1 `cat $OLD_PIN`
 								}
-								
+
 								run () {
 								  if [ "$(id -un)" = "$AS_USER" ]; then
 								    eval $1
@@ -384,7 +384,7 @@ Criar unicorn_ini.sh na pasta config e adiconar o conteúdo:	#!/bin/sh
 								    su -c "$1" - $AS_USER
 								  fi
 								}
-								
+
 								case "$1" in
 								start)
 								  sig 0 && echo >&2 "Already running" && exit 0
@@ -412,7 +412,7 @@ Criar unicorn_ini.sh na pasta config e adiconar o conteúdo:	#!/bin/sh
 								      printf '.' && sleep 1 && n=$(( $n - 1 ))
 								    done
 								    echo
-								
+
 								    if test $n -lt 0 && test -s $OLD_PIN
 								    then
 								      echo >&2 "$OLD_PIN still exists after $TIMEOUT seconds"
@@ -431,7 +431,7 @@ Criar unicorn_ini.sh na pasta config e adiconar o conteúdo:	#!/bin/sh
 								  exit 1
 								  ;;
 								esac
-								
+
 
 
 
@@ -541,7 +541,7 @@ Instalar PostgreSQL: deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg ma
 		     sudo apt-get update
 		     sudo apt-get install postgresql-common
 		     sudo apt-get install postgresql-9.4 postgresql-contrib libpq-dev
-		     psql -V				  
+		     psql -V
 
 
 
