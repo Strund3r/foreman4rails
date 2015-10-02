@@ -1,2 +1,0 @@
-/home/dev9/foreman4rails/config/foreman4rails-web-1.conf /home/deploy/.rvm/bin/rvm all do foreman start
-/home/dev9/foreman4rails/teste.txt /home/deploy/.rvm/bin/rvm all do foreman start
