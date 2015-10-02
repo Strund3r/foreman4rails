@@ -5,3 +5,6 @@ env:
 - DB=postgresql
 gemfile:
 - Gemfile
+addons:
+    code_climate:
+        repo_token: 09194a28238da3512d77e22340886bd968790004688de1db6f6816c3a2e6ee24
