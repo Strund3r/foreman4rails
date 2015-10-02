@@ -14,8 +14,8 @@ stdout_path "#{root}/log/unicorn.log"
 # Listen on a UNIX data socket
 listen "/tmp/unicorn.foreman4rails.sock"
 
-# 16 worker processes for production environment
-worker_processes 16
+# 1 worker process for production environment
+worker_processes 1
 
 # Load rails before forking workers for better worker spawn time
 preload_app true
