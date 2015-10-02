@@ -59,7 +59,7 @@ namespace :deploy do
         puts "Run `git push` to sync changes."
         exit
       end
-    end  
+    end
   end
   before "deploy", "deploy:check_revision"
 end
