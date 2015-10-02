@@ -3,9 +3,4 @@ languages:
    JavaScript: true
    Python: false
    PHP: false
-   HTML: true
-   CSS: true
-   Shell: true
-   Nginx: true
-   JavaScript: true
 exclude_paths:
