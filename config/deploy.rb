@@ -126,6 +126,7 @@ namespace :gems do
     end
   end
 end
+before "deploy", "gems:install"
 
 after "deploy:setup_config", "foreman:export"
 # after "foreman:export", "foreman:goforeman"
