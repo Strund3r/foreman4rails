@@ -118,6 +118,14 @@ namespace :nginx do
 end
 before "deploy", "nginx:nginx"
 
+namespace :gems do
+  desc "Bundle install"
+  task :install do
+    on roles(:app) do
+      run "bundle install"
+    end
+  end
+end
 
 after "deploy:setup_config", "foreman:export"
 # after "foreman:export", "foreman:goforeman"
