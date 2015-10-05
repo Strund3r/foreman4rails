@@ -110,13 +110,25 @@ end
 
 namespace :nginx do
   desc "Install nginx"
-  task :nginx do
+  task :install do
     on roles(:web) do
       execute "sudo apt-get -y install nginx-full"
     end
   end
 end
-before "deploy", "nginx:nginx"
+before "deploy", "nginx:install"
+
+namespace :nodejs do
+  desc "Install nginx"
+  task :install do
+    on roles(:web) do
+      execute "sudo add-apt-repository ppa:chris-lea/node.js"
+      execute "sudo apt-get -y update"
+      execute "sudo apt-get -y install nodejs"
+    end
+  end
+end
+before "deploy", "nodejs:install"
 
 namespace :gems do
   desc "Bundle install"
