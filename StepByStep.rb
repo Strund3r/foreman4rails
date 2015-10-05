@@ -475,13 +475,16 @@ Adicionar usuário ao servidor: sudo adduser deploy
 			       sudo adduser deploy sudo
 			       su deploy
 
-if "perl: warning: Setting locale failed."
-    sudo nano /var/lib/locales/supported.d/local
-    add "en_US.UTF-8 UTF-8
-         en_US ISO-8859-1
-         pt_BR ISO-8859-1
-         pt_BR.UTF-8 UTF-8"
-end
+***if "perl: warning: Setting locale failed."
+
+       run "sudo nano /var/lib/locales/supported.d/local"
+       add "en_US.UTF-8 UTF-8
+            en_US ISO-8859-1
+            pt_BR ISO-8859-1
+            pt_BR.UTF-8 UTF-8"
+       run "sudo dpkg-reconfigure locales"
+
+***end
 
 
 Instalar Ruby 2.2.3: sudo apt-get update
