@@ -485,6 +485,10 @@ Adicionar usuário ao servidor: sudo adduser deploy
 			       sudo adduser deploy sudo
 			       su deploy
 
+
+
+
+
 ***if "perl: warning: Setting locale failed."
 
        run "sudo nano /var/lib/locales/supported.d/local"
@@ -495,6 +499,15 @@ Adicionar usuário ao servidor: sudo adduser deploy
        run "sudo dpkg-reconfigure locales"
 
 ***end
+
+
+
+
+Adicionar passwordless sudo: sudo visudo
+                             add: ALL            ALL = (ALL) NOPASSWD: ALL
+
+
+
 
 
 Instalar Ruby 2.2.3: sudo apt-get update
