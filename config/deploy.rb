@@ -122,7 +122,7 @@ namespace :nodejs do
   desc "Install nginx"
   task :install do
     on roles(:web) do
-      execute "sudo add-apt-repository ppa:chris-lea/node.js"
+      execute "sudo add-apt-repository -y ppa:chris-lea/node.js"
       execute "sudo apt-get -y update"
       execute "sudo apt-get -y install nodejs"
     end
