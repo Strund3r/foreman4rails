@@ -524,26 +524,6 @@ Instalar Bundler gem: echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 
 
 
-Instalar NodeJS: sudo add-apt-repository ppa:chris-lea/node.js
-		 sudo apt-get -y update
-		 sudo apt-get -y install nodejs
-
-
-
-
-
-
-Instalar Nginx: gpg --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7
-		gpg --armor --export 561F9B9CAC40B2F7 | sudo apt-key add -
-		sudo apt-get install apt-transport-https
-		sudo apt-get update
-		sudo apt-get install nginx-full
-		nginx -v
-
-
-
-
-
 Instalar PostgreSQL: deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
 		     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
 		     sudo apt-key add -
