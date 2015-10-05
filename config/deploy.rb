@@ -130,16 +130,6 @@ namespace :nodejs do
 end
 before "deploy", "nodejs:install"
 
-namespace :gems do
-  desc "Bundle install"
-  task :install do
-    on roles(:app) do
-      execute "bundle install"
-    end
-  end
-end
-before "deploy", "gems:install"
-
 after "deploy:setup_config", "foreman:export"
 # after "foreman:export", "foreman:goforeman"
 after "foreman:export", "foreman:restart"
