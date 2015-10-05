@@ -32,23 +32,6 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
-namespace :rvm do
-  desc "RVM install"
-  task :install do
-    on roles(:app) do
-      execute "sudo apt-get install -y libgmp3-dev"
-      execute "sudo apt-get install -y git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev"
-      execute "sudo apt-get install -y libgdbm-dev libncurses5-dev automake libtool bison libffi-dev"
-      execute "sudo apt-get update -y"
-      run "curl -L https://get.rvm.io | bash -s stable"
-      run "source ~/.rvm/scripts/rvm"
-      run "rvm install 2.2.3"
-      run "rvm use 2.2.3 --defaul"
-    end
-  end
-end
-before "deploy", "rvm:install"
-
 namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
