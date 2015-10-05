@@ -134,7 +134,7 @@ namespace :gems do
   desc "Bundle install"
   task :install do
     on roles(:app) do
-      run "bundle install"
+      execute "bundle install"
     end
   end
 end
