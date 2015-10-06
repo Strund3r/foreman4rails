@@ -1,1 +1,1 @@
-web: bundle exec unicorn -E development -c config/unicorn_development.rb -p 3000
+web: bundle exec unicorn -E development -c config/unicorn.rb -p 3000
