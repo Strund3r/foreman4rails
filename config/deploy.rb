@@ -112,7 +112,7 @@ namespace :nginx do
   desc "Install nginx"
   task :install do
     on roles(:web) do
-      execute "sudo apt-get -y install nginx-full"
+      execute "sudo apt-get -y install nginx"
     end
   end
 end
