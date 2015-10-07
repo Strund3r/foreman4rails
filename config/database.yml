@@ -4,6 +4,12 @@ test:
   username: deploy
   password: 1234
 
+development:
+  adapter: postgresql
+  database: foreman4rails
+  username: deploy
+  password: 1234
+
 production:
   adapter: postgresql
   database: foreman4rails
