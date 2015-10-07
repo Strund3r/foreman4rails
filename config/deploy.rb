@@ -4,7 +4,7 @@ lock '3.4.0'
 require "capistrano/bundler"
 
 # Define your server here
-server "159.203.78.204", roles: %w{web app db}, primary: true
+server "45.55.87.168", roles: %w{web app db}, primary: true
 
 
 # Set application settings
@@ -76,13 +76,6 @@ namespace :foreman do
     end
   end
 
-  # desc "Start Foreman"
-  # task :goforeman do
-  #   on roles(:app) do
-  #     execute "cd /home/deploy/apps/foreman4rails/current/ && /home/deploy/.rvm/bin/rvm all do foreman start"
-  #   end
-  # end
-
   desc "Start the application services"
   task :start do
     on roles(:app) do
@@ -100,7 +93,6 @@ namespace :foreman do
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-#        execute "sudo stop #{fetch(:application)}"
         execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
     end
   end
