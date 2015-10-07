@@ -2,7 +2,7 @@ set :stage, :production
 set :rails_env, 'production'
 
 # Replace 127.0.0.1 with your server's IP address!
-server '159.203.78.204', user: 'deploy', roles: %w{web app db}
+server '45.55.87.168', user: 'deploy', roles: %w{web app db}
 
 # server-based syntax
 # ======================
