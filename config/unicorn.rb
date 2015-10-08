@@ -2,7 +2,7 @@
 root = "/home/deploy/apps/foreman4rails/current"
 
 # Define worker directory for Unicorn
-working_directory root
+working_directory = "/home/deploy/apps/foreman4rails/current"
 
 # Location of PID file
 pid "#{root}/tmp/pids/unicorn.pid"
