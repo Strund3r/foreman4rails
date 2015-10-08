@@ -8,8 +8,8 @@ working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 
 # Define Log paths
-stderr_path "#{root}/log/unicorn.log"
-stdout_path "#{root}/log/unicorn.log"
+stderr_path "#{root}/log/unicorn-err.log"
+stdout_path "#{root}/log/unicorn-out.log"
 
 # Listen on a UNIX data socket
 listen "/tmp/unicorn.foreman4rails.sock"
