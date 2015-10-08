@@ -493,6 +493,21 @@ Adicionar usuário ao servidor: sudo adduser deploy
 
 
 
+***if "perl: warning: Setting locale failed."
+
+       run "sudo nano /var/lib/locales/supported.d/local"
+       add "en_US.UTF-8 UTF-8
+            en_US ISO-8859-1
+            pt_BR ISO-8859-1
+            pt_BR.UTF-8 UTF-8"
+       run "sudo dpkg-reconfigure locales"
+
+***end
+
+
+
+
+
 Instalar Ruby 2.2.3: sudo apt-get update
 		     sudo apt-get install libgmp3-dev
 		     sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
@@ -502,7 +517,8 @@ Instalar Ruby 2.2.3: sudo apt-get update
 
 
 Instalar RVM: sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
-	      curl -L https://get.rvm.io | bash -s stable
+	      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+              curl -L https://get.rvm.io | bash -s stable
 	      source ~/.rvm/scripts/rvm
 	      rvm install 2.2.3
               rvm use 2.2.3 --default
@@ -539,7 +555,8 @@ Instalar Nginx: gpg --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F
 
 
 
-Instalar PostgreSQL: deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+Instalar PostgreSQL: touch /etc/apt/sources.list.d/pgdg.list   *and add a line for the repository*
+                     deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
 		     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
 		     sudo apt-key add -
 		     sudo apt-get update
