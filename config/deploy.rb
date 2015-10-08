@@ -26,7 +26,7 @@ set :forward_agent, true
 #set :linked_files, %w{config/database.yml config/secrets.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+#set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
@@ -99,5 +99,4 @@ namespace :foreman do
 end
 
 after "deploy:setup_config", "foreman:export"
-# after "foreman:export", "foreman:goforeman"
 after "foreman:export", "foreman:restart"
