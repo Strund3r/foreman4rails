@@ -56,8 +56,8 @@ namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:web) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/automatizar-nginx-unicorn`
-        puts "WARNING: HEAD is not the same as origin/automatizar-nginx-unicorn"
+      unless `git rev-parse HEAD` == `git rev-parse origin/master`
+        puts "WARNING: HEAD is not the same as origin/master"
         puts "Run `git push` to sync changes."
         exit
       end
@@ -104,7 +104,7 @@ namespace :nginx do
   desc "Install nginx"
   task :install do
     on roles(:web) do
-      execute "sudo apt-get -y install nginx"
+      execute "sudo apt-get -y install nginx-full"
     end
   end
 end
@@ -114,7 +114,6 @@ namespace :nodejs do
   desc "Install nginx"
   task :install do
     on roles(:web) do
-      execute "sudo add-apt-repository -y ppa:chris-lea/node.js"
       execute "sudo apt-get -y update"
       execute "sudo apt-get -y install nodejs"
     end
