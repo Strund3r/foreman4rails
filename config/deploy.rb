@@ -17,7 +17,7 @@ set :current_path, "/home/deploy/apps/foreman4rails/current"
 
 set :scm, "git"
 set :repo_url, "git@github.com:dev9seucondominio/foreman4rails.git"
-set :branch, "master"
+set :branch, "automatizar-nginx-unicorn"
 
 set :pty, true
 set :forward_agent, true
@@ -27,6 +27,8 @@ set :forward_agent, true
 
 # Default value for linked_dirs is []
 #set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
@@ -45,7 +47,7 @@ namespace :deploy do
       sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/nginx.conf /etc/nginx/sites-enabled/foreman4rails"
       sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/unicorn_ini.sh /etc/init.d/unicorn_foreman4rails"
       execute "chmod +x /etc/init.d/unicorn_foreman4rails"
-#     put File.read("config/database.yml"), "/home/deploy/apps/foreman4rails/shared/config/database.yml"
+#      put File.read("config/database.yml"), "/home/deploy/apps/foreman4rails/shared/config/database.yml"
       puts "Now edit the config files in #{shared_path}."
     end
   end
@@ -54,8 +56,8 @@ namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:web) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
-        puts "WARNING: HEAD is not the same as origin/master"
+      unless `git rev-parse HEAD` == `git rev-parse origin/automatizar-nginx-unicorn`
+        puts "WARNING: HEAD is not the same as origin/automatizar-nginx-unicorn"
         puts "Run `git push` to sync changes."
         exit
       end
@@ -97,6 +99,28 @@ namespace :foreman do
     end
   end
 end
+
+namespace :nginx do
+  desc "Install nginx"
+  task :install do
+    on roles(:web) do
+      execute "sudo apt-get -y install nginx"
+    end
+  end
+end
+before "deploy", "nginx:install"
+
+namespace :nodejs do
+  desc "Install nginx"
+  task :install do
+    on roles(:web) do
+      execute "sudo add-apt-repository -y ppa:chris-lea/node.js"
+      execute "sudo apt-get -y update"
+      execute "sudo apt-get -y install nodejs"
+    end
+  end
+end
+before "deploy", "nodejs:install"
 
 after "deploy:setup_config", "foreman:export"
 after "foreman:export", "foreman:restart"

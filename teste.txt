@@ -1,1 +1,0 @@
-run /home/deploy/.rvm/bin/rvm all do foreman start

@@ -54,6 +54,8 @@ group :development do
   gem 'capistrano', '~> 3.4.0'
   gem 'capistrano-bundler', '~> 1.1.4'
   gem 'capistrano-rails', '~> 1.1.3'
+#  gem 'capistrano-unicorn-nginx', '~> 3.2.0'
+  # gem 'capistrano-safe-deploy-to', '~> 1.1.1'
 
   # Add this if you're using rvm
   gem 'capistrano-rvm', github: "capistrano/rvm"
