@@ -43,6 +43,9 @@ Instalar Rails 4.2.4: gem install rails -v 4.2.4
 
 
 
+Instalar Redis Server (banco de dados do sidekq)
+          $ sudo apt-get install redis-server
+
 
 
 Instalar PostgreSQL: deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main

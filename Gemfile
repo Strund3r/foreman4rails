@@ -33,6 +33,7 @@ gem 'unicorn'
 gem 'foreman', '~> 0.78.0'
 
 gem 'capistrano-safe-deploy-to'
+gem 'sidekiq'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
