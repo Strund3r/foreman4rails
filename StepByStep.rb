@@ -498,7 +498,6 @@ Adicionar usuário ao servidor: sudo adduser deploy
 
 
 ***if "perl: warning: Setting locale failed."
-<<<<<<< HEAD
 
        run "sudo nano /var/lib/locales/supported.d/local"
        add "en_US.UTF-8 UTF-8
@@ -506,23 +505,11 @@ Adicionar usuário ao servidor: sudo adduser deploy
             pt_BR ISO-8859-1
             pt_BR.UTF-8 UTF-8"
        run "sudo dpkg-reconfigure locales"
-
 ***end
 
 
 
 
-***end
-
-
-
-Instalar RVM: sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
-	      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-              curl -L https://get.rvm.io | bash -s stable
-	      source ~/.rvm/scripts/rvm
-	      rvm install 2.2.3
-              rvm use 2.2.3 --default
- 	      ruby -v
 
 Adicionar passwordless sudo: sudo visudo
                              add: ALL            ALL = (ALL) NOPASSWD: ALL
