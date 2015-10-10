@@ -3,13 +3,16 @@ test:
   database: foreman4rails
   username: deploy
   password: 1234
+  host: localhost
 production:
   adapter: postgresql
   database: foreman4rails
   username: deploy
   password: 1234
+  host: 104.236.20.201
 development:
   adapter: postgresql
   database: foreman4rails
   username: deploy
   password: 1234
+  host: localhost
