@@ -4,7 +4,7 @@ lock '3.4.0'
 require "capistrano/bundler"
 
 # Define your server here
-server "159.203.86.216", roles: %w{web app db}, primary: true
+server "104.236.20.201", roles: %w{web app db}, primary: true
 
 
 # Set application settings
