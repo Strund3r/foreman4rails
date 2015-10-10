@@ -545,7 +545,7 @@ Instalar Bundler gem: echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 
 
 
-Instalar PostgreSQL: touch /etc/apt/sources.list.d/pgdg.list   *and add a line for the repository*
+Instalar PostgreSQL: sudo touch /etc/apt/sources.list.d/pgdg.list   *and add a line for the repository*
                      deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
 		     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
 		     sudo apt-key add -
