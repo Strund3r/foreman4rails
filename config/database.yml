@@ -5,7 +5,7 @@ test:
   timeout: 5000
 production:
   adapter: sqlite3
-  database: /home/deploy/apps/foreman4rails/current/db/foreman4rails
+  database: /home/deploy/apps/foreman4rails/db/foreman4rails
   pool: 5
   timeout: 5000
 development:
