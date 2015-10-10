@@ -2,7 +2,7 @@ language: ruby
 rvm:
 - 2.2.3
 env:
-- DB=sqlite3
+- DB=postgresql
 gemfile:
 - Gemfile
 addons:
