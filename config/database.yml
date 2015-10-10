@@ -1,15 +1,15 @@
 test:
-  adapter: sqlite3
-  database: db/foreman4rails
-  pool: 5
-  timeout: 5000
+  adapter: postgresql
+  database: foreman4rails
+  username: deploy
+  pasword: 1234
 production:
-  adapter: sqlite3
-  database: db/foreman4rails
-  pool: 5
-  timeout: 5000
+  adapter: postgresql
+  database: foreman4rails
+  username: deploy
+  pasword: 1234
 development:
-  adapter: sqlite3
-  database: db/foreman4rails
-  pool: 5
-  timeout: 5000
+  adapter: postgresql
+  database: foreman4rails
+  username: deploy
+  pasword: 1234
