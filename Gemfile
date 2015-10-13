@@ -2,11 +2,12 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
-# Use postgresql as the database for Active Record
-
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+ gem 'rails', '4.2.4'
+ # Use postgresql as the database for Active Record
+ #gem 'pg'
+ gem 'sqlite3'
+ # Use SCSS for stylesheets
+ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -39,38 +40,25 @@ gem 'sidekiq'
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+ group :development, :test do
+   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+   gem 'byebug'
 
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+   # Access an IRB console on exception pages or by using <%= console %> in views
+   gem 'web-console', '~> 2.0'
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-end
+   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+   gem 'spring'
+ end
 
-group :development do
-  gem 'capistrano', '~> 3.4.0'
-  gem 'capistrano-bundler', '~> 1.1.4'
-  gem 'capistrano-rails', '~> 1.1.3'
-  gem 'sqlite3', '~> 1.3.10'
-#  gem 'capistrano-unicorn-nginx', '~> 3.2.0'
-  # gem 'capistrano-safe-deploy-to', '~> 1.1.1'
+ group :development do
+   gem 'capistrano', '~> 3.4.0'
+   gem 'capistrano-bundler', '~> 1.1.4'
+   gem 'capistrano-rails', '~> 1.1.3'
+ #  gem 'capistrano-unicorn-nginx', '~> 3.2.0'
+   # gem 'capistrano-safe-deploy-to', '~> 1.1.1'
 
-  # Add this if you're using rvm
-  gem 'capistrano-rvm', github: "capistrano/rvm"
-end
-
-group :production do
-  gem 'capistrano', '~> 3.4.0'
-  gem 'pg', '~> 0.18.3'
-  gem 'capistrano-bundler', '~> 1.1.4'
-  gem 'capistrano-rails', '~> 1.1.3'
-#  gem 'capistrano-unicorn-nginx', '~> 3.2.0'
-  # gem 'capistrano-safe-deploy-to', '~> 1.1.1'
-
-  # Add this if you're using rvm
-  gem 'capistrano-rvm', github: "capistrano/rvm"
-end
+   # Add this if you're using rvm
+   gem 'capistrano-rvm', github: "capistrano/rvm"
+ end
 
