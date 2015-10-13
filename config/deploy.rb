@@ -33,14 +33,14 @@ set :forward_agent, true
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :deploy do
-  %w[start stop restart].each do |command|
-    desc "#{command} unicorn server"
-    task command do
-      on roles(:app), except: {no_release: true} do
-        run "/etc/init.d/unicorn_foreman4rails #{command}" # Using unicorn as the app server
-      end
-    end
-  end
+  # %w[start stop restart].each do |command|
+  #   desc "#{command} unicorn server"
+  #   task command do
+  #     on roles(:app), except: {no_release: true} do
+  #       run "/etc/init.d/unicorn_foreman4rails #{command}" # Using unicorn as the app server
+  #     end
+  #   end
+  # end
 
   task :setup_config do
     on roles(:app) do
