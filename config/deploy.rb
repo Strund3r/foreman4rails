@@ -121,6 +121,5 @@ namespace :nodejs do
 end
 before "deploy", "nodejs:install"
 
-# after "deploy:setup_config", "foreman:export"
-after "foreman:export"
+after "deploy", "foreman:export"
 after "foreman:export", "foreman:restart"
