@@ -14,6 +14,7 @@ set :deploy_to, "/home/deploy/apps/foreman4rails" # Directory in which the deplo
 set :deploy_via, :remote_cache
 set :use_sudo, false
 set :current_path, "/home/deploy/apps/foreman4rails/current"
+set :shared_path, "/home/deploy/apps/foreman4rails/shared"
 
 set :scm, "git"
 set :repo_url, "git@github.com:dev9seucondominio/foreman4rails.git"
@@ -71,7 +72,7 @@ namespace :foreman do
   task :export do
     on roles(:app) do
         execute "sudo chmod -R 1777 /etc/init/"
-        execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init --procfile /home/deploy/apps/foreman4rails/current/Procfile --app=#{fetch(:application)} --user=#{fetch(:user)}"
+        execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init --procfile /home/deploy/apps/foreman4rails/current/Procfile --app=#{fetch(:application)} --user=#{fetch(:user)} --log=#{fetch(:shared_path)}"
         execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
         execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf"
 
