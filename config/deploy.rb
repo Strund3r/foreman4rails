@@ -111,7 +111,7 @@ end
 before "deploy", "nginx:install"
 
 namespace :nodejs do
-  desc "Install nginx"
+  desc "Install nodejs"
   task :install do
     on roles(:web) do
       execute "sudo apt-get -y update"
