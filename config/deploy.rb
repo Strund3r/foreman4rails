@@ -40,7 +40,7 @@ namespace :deploy do
   #       run "/etc/init.d/unicorn_foreman4rails #{command}" # Using unicorn as the app server
   #     end
   #   end
-   end
+  # end
 
    task :setup_config do
 #     on roles(:app) do
