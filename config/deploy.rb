@@ -97,7 +97,7 @@ namespace :foreman do
   task :restart do
     on roles(:app) do
       execute "sudo start foreman4rails"
-      if "sudo start foreman4rails" = "start: Job is already running: foreman4rails"
+      if "sudo start foreman4rails" == "start: Job is already running: foreman4rails"
         execute "sudo restart foreman4rails"
       else
         execute "sudo start foreman4rails"
