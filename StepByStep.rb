@@ -4,12 +4,21 @@
 *  ***************************'**************************'*****************************  *
 ******************************************************************************************
 
-Ver logs do Foreman
-        $ sudo tail -f /var/log/upstart/foreman4rails-web-1.log
+Ver logs do Foreman: sudo tail -f /var/log/upstart/foreman4rails-web-1.log
 
-Reiniciar Serviços
-        $ sudo service nginx restart
-        $ sudo unicorn nginx restart
+
+
+
+
+Ver logs do Web: sudo nano ~/apps/foreman4rails/current/log/production.log
+
+
+
+
+
+Reiniciar Serviços: sudo service nginx restart
+                    sudo unicorn nginx restart
+
 
 
 
