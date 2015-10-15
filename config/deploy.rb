@@ -96,12 +96,7 @@ namespace :foreman do
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-      execute "sudo start foreman4rails"
-      if stdout == "start: Job is already running: foreman4rails"
-        execute "sudo restart foreman4rails"
-      else
-        execute "sudo start foreman4rails"
-      end
+        execute "sudo start #{fetch(:application)} & sudo restart #{fetch(:application)}"
     end
   end
 end
