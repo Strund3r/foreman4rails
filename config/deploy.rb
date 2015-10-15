@@ -96,7 +96,7 @@ namespace :foreman do
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-        execute "sudo restart #{fetch(:application)}"
+        execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
     end
   end
 end
@@ -123,5 +123,4 @@ end
 before "deploy", "nodejs:install"
 
 after "deploy", "foreman:export"
-after "foreman:export", "foreman:start"
-after "foreman:start", "foreman:restart"
+after "foreman:export", "foreman:restart"
