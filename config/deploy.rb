@@ -50,6 +50,7 @@ namespace :deploy do
        execute "chmod +x /etc/init.d/unicorn_foreman4rails"
  #      put File.read("config/database.yml"), "/home/deploy/apps/foreman4rails/shared/config/database.yml"
        puts "Now edit the config files in #{shared_path}."
+       execute "killall -9 ruby"
      end
    end
    after "deploy", "deploy:setup_config"
@@ -71,7 +72,6 @@ namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
   task :export do
     on roles(:app) do
-      execute "killall -9 unicorn"
       execute "sudo chmod -R 1777 /etc/init/"
       execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -f /home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l /var/#{fetch(:application)}/log -e /home/deploy/apps/foreman4rails/current/.env"
       #execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
