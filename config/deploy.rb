@@ -69,8 +69,8 @@ end
 
 namespace :unicorn_kill do
   desc "Kill unicorn"
-  task :unicorn_kill do
-    on roles(:web) do
+  task :kill do
+    on roles(:app) do
       execute "sudo pkill unicorn"
     end
   end
@@ -132,6 +132,6 @@ namespace :nodejs do
 end
 before "deploy", "nodejs:install"
 
-after "deploy", "unicorn_kill"
+after "deploy", "kill"
 after "deploy", "foreman:export"
 after "foreman:export", "foreman:restart"
