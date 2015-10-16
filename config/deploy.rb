@@ -50,7 +50,7 @@ namespace :deploy do
        execute "chmod +x /etc/init.d/unicorn_foreman4rails"
  #      put File.read("config/database.yml"), "/home/deploy/apps/foreman4rails/shared/config/database.yml"
        puts "Now edit the config files in #{shared_path}."
-       execute "killall -9 ruby"
+       execute "kill $(ps aux | grep '[u]nicorn' | awk '{print $2}')"
      end
    end
    after "deploy", "deploy:setup_config"
