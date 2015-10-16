@@ -50,8 +50,6 @@ namespace :deploy do
        execute "chmod +x /etc/init.d/unicorn_foreman4rails"
  #      put File.read("config/database.yml"), "/home/deploy/apps/foreman4rails/shared/config/database.yml"
        puts "Now edit the config files in #{shared_path}."
-       execute "kill $(ps aux | grep '[u]nicorn' | awk '{print $2}')"
-       execute "sudo service unicorn_foreman4rails start"
      end
    end
    after "deploy", "deploy:setup_config"
@@ -74,9 +72,9 @@ namespace :foreman do
   task :export do
     on roles(:app) do
       execute "sudo chmod -R 1777 /etc/init/"
-      execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -f /home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -e /home/deploy/apps/foreman4rails/current/.env"
-      #execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
-      execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf"
++     execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -f /home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{fetch(:shared_path)} -e /home/deploy/apps/foreman4rails/current/.env"
++     #execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
++     execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf"
     end
   end
 
