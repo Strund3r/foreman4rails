@@ -133,6 +133,6 @@ namespace :nodejs do
 end
 before "deploy", "nodejs:install"
 
-before "foreman:export", "unicorn_kill"
+after "deploy", "unicorn_kill"
 after "deploy", "foreman:export"
 after "foreman:export", "foreman:restart"
