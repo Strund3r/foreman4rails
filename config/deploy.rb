@@ -67,6 +67,16 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
 end
 
+namespace :unicorn_kill do
+  desc "Kill unicorn"
+  task :unicorn_kill do
+    on roles(:web) do
+      execute "sudo pkill unicorn"
+    end
+  end
+before "foreman:export", "unicorn_kill"
+end
+
 namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
   task :export do
