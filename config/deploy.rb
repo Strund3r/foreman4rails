@@ -74,8 +74,8 @@ namespace :unicorn_kill do
       execute "sudo pkill unicorn"
     end
   end
-before "foreman:export", "unicorn_kill"
 end
+before "foreman:export", "unicorn_kill"
 
 namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
