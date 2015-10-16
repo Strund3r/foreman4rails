@@ -67,19 +67,11 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
 end
 
-namespace :unicorn_kill do
-  desc "Kill unicorn"
-  task :kill do
-    on roles(:app) do
-      execute "sudo pkill unicorn"
-    end
-  end
-end
-
 namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
   task :export do
     on roles(:app) do
+      execute "sudo pkill unicorn"
       execute "sudo chmod -R 1777 /etc/init/"
       execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -f /home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l /var/#{fetch(:application)}/log -e /home/deploy/apps/foreman4rails/current/.env"
       #execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
@@ -132,6 +124,5 @@ namespace :nodejs do
 end
 before "deploy", "nodejs:install"
 
-after "deploy", "kill"
 after "deploy", "foreman:export"
 after "foreman:export", "foreman:restart"
