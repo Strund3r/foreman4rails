@@ -99,6 +99,7 @@ namespace :foreman do
       execute "sudo service nginx restart"
       execute "sudo service nginx reload"
       execute "sudo service unicorn_foreman4rails restart"
+      execute "sudo service unicorn_foreman4rails restart"
     end
   end
 end
