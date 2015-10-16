@@ -72,8 +72,8 @@ namespace :foreman do
   task :export do
     on roles(:app) do
       execute "sudo chmod -R 1777 /etc/init/"
-      execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -f /home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{fetch(:shared_path)} -e /home/deploy/apps/foreman4rails/current/.env"
-      execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
+      execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -f /home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l /var/#{fetch(:application)}/log -e /home/deploy/apps/foreman4rails/current/.env"
+      #execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
       execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf"
     end
   end
@@ -81,21 +81,21 @@ namespace :foreman do
   desc "Start the application services"
   task :start do
     on roles(:app) do
-      execute "sudo start #{fetch(:application)}"
+      execute "sudo service #{fetch(:application)} start"
     end
   end
 
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
-      execute "sudo stop #{fetch(:application)}"
+      execute "sudo service #{fetch(:application)} stop"
     end
   end
 
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-      execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
+      execute "sudo service #{fetch(:application)} start || sudo service #{fetch(:application)} restart"
     end
   end
 end
