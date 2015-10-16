@@ -73,7 +73,7 @@ namespace :foreman do
     on roles(:app) do
       execute "sudo chmod -R 1777 /etc/init/"
       execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -f /home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{fetch(:shared_path)}"
-      execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
+      #execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
       execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf"
     end
   end
@@ -122,4 +122,6 @@ end
 before "deploy", "nodejs:install"
 
 after "deploy", "foreman:export"
-after "foreman:export", "foreman:restart"
+after "foreman:export", "foreman:stop"
+after "foreman:stop", "foreman:start"
+after "foreman:start", "foreman:restart"
