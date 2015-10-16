@@ -83,23 +83,25 @@ namespace :foreman do
   desc "Start the application services"
   task :start do
     on roles(:app) do
-      execute "sudo service #{fetch(:application)} start"
+      #execute "sudo service #{fetch(:application)} start"
+      execute "sudo start #{fetch(:application)}"
     end
   end
 
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
-      execute "sudo service #{fetch(:application)} stop"
+      #execute "sudo service #{fetch(:application)} stop"
+      execute "sudo stop #{fetch(:application)}"
     end
   end
 
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-      execute "sudo service #{fetch(:application)} start || sudo service #{fetch(:application)} restart"
-      #execute "sudo service nginx restart"
-      #execute "sudo service nginx restart"
+      #execute "sudo service #{fetch(:application)} start || sudo service #{fetch(:application)} restart"
+      execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
+
     end
   end
 end
