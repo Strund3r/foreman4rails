@@ -96,8 +96,8 @@ namespace :foreman do
   task :restart do
     on roles(:app) do
       execute "sudo service #{fetch(:application)} start || sudo service #{fetch(:application)} restart"
-      execute "sudo service nginx restart"
-      execute "sudo service nginx reload"
+      #execute "sudo service nginx restart"
+      #execute "sudo service nginx restart"
     end
   end
 end
