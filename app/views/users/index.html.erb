@@ -19,9 +19,9 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Mostrar', user %></td><img src="">
-        <td><%= link_to 'Editar', edit_user_path(user) %></td><img src="">
-        <td><%= link_to 'Remover' </td><img src="delete.png">, user, method: :delete, data: { confirm: 'Tem certeza que deseja remover usuário?' } %>
+        <td><%= link_to 'Mostrar', user %></td><img src="find.png">
+        <td><%= link_to 'Editar', edit_user_path(user) %></td><img src="page_white_text.png">
+        <td><%= link_to 'Remover', user, method: :delete, data: { confirm: 'Tem certeza que deseja remover usuário?' } %></td><img src="delete.png">
       </tr>
     <% end %>
   </tbody>
