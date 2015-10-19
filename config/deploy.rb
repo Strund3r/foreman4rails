@@ -96,7 +96,6 @@ namespace :foreman do
   task :restart do
     on roles(:app) do
       execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
-      execute "sudo service unicorn_foreman4rails restart"
     end
   end
 end
