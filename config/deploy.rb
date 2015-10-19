@@ -96,7 +96,6 @@ namespace :foreman do
   task :restart do
     on roles(:app) do
       execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
-      execute "sudo cat /var/log/upstart/foreman4rails-web-1.log"
     end
   end
 end
