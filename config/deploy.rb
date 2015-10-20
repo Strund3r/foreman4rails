@@ -122,5 +122,4 @@ end
 before "deploy", "nodejs:install"
 
 after "deploy", "foreman:export"
-after "foreman:export", "foreman:stop"
-after "foreman:stop", "foreman:start"
+after "foreman:export", "foreman:restart"
