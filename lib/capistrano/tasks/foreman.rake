@@ -1,7 +1,7 @@
 namespace :foreman do
 
-  processes = [ { process: "consumer", concurrency: 1 },
-                { process: "uploader", concurrency: 1 }]
+  processes = [ { process: "web", concurrency: 1 },
+                { process: "worker", concurrency: 1 }]
 
   desc "Export the Procfile to Ubuntu's upstart scripts"
   task :export do
