@@ -18,7 +18,7 @@ namespace :foreman do
         end
 
         execute :sudo, "rm -rf /etc/init/#{fetch(:application)}*"
-        execute :sudo, "bundle exec foreman export upstart /etc/init -t foreman/export/my_upstart -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log -c #{!ENV['concurrency'].nil? ? ENV['concurrency'] : "#{processes.map{ |p| "#{p[:process]}=#{p[:concurrency]}"}.join(",")}"}"
+        execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -t foreman/export/my_upstart -a #{fetch(:application)} -u #{fetch(:user)} -l #{current_path}/log -c #{!ENV['concurrency'].nil? ? ENV['concurrency'] : "#{processes.map{ |p| "#{p[:process]}=#{p[:concurrency]}"}.join(",")}"}"
 
       end
     end
