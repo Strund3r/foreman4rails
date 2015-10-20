@@ -67,38 +67,38 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
 end
 
-# namespace :foreman do
-#   desc "Export the Procfile to Ubuntu's upstart scripts"
-#   task :export do
-#     on roles(:app) do
-#       execute "sudo chmod -R 1777 /etc/init/"
-#       execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -f /home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{fetch(:shared_path)}"
-#       execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
-#       execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf /etc/init/foreman4rails-worker.conf /etc/init/foreman4rails-worker-1.conf"
-#     end
-#   end
+namespace :foreman do
+  desc "Export the Procfile to Ubuntu's upstart scripts"
+  task :export do
+    on roles(:app) do
+      execute "sudo chmod -R 1777 /etc/init/"
+      execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -f /home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)} -l #{fetch(:shared_path)}"
+      execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
+      execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf /etc/init/foreman4rails-worker.conf /etc/init/foreman4rails-worker-1.conf"
+    end
+  end
 
-#   desc "Start the application services"
-#   task :start do
-#     on roles(:app) do
-#       execute "sudo start #{fetch(:application)}"
-#     end
-#   end
+  desc "Start the application services"
+  task :start do
+    on roles(:app) do
+      execute "sudo start #{fetch(:application)}"
+    end
+  end
 
-#   desc "Stop the application services"
-#   task :stop do
-#     on roles(:app) do
-#       execute "sudo stop #{fetch(:application)}"
-#     end
-#   end
+  desc "Stop the application services"
+  task :stop do
+    on roles(:app) do
+      execute "sudo stop #{fetch(:application)}"
+    end
+  end
 
-#   desc "Restart the application services"
-#   task :restart do
-#     on roles(:app) do
-#       execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
-#     end
-#   end
-# end
+  desc "Restart the application services"
+  task :restart do
+    on roles(:app) do
+      execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
+    end
+  end
+end
 
 namespace :nginx do
   desc "Install nginx"
