@@ -81,21 +81,21 @@ namespace :foreman do
   desc "Start the application services"
   task :start do
     on roles(:app) do
-      execute "sudo service start #{fetch(:application)}"
+      execute "sudo /etc/init.d/#{fetch(:application)} start"
     end
   end
 
   desc "Stop the application services"
   task :stop do
     on roles(:app) do
-      execute "sudo service stop #{fetch(:application)}"
+      execute "sudo /etc/init.d/#{fetch(:application)} stop"
     end
   end
 
   desc "Restart the application services"
   task :restart do
     on roles(:app) do
-      execute "sudo service start #{fetch(:application)} || sudo service restart #{fetch(:application)}"
+      execute "sudo /etc/init.d/#{fetch(:application)} start || sudo /etc/init.d/#{fetch(:application)} restart"
     end
   end
 end
