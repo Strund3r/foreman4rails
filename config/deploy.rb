@@ -18,7 +18,7 @@ set :shared_path, "/home/deploy/apps/foreman4rails/shared"
 
 set :scm, "git"
 set :repo_url, "git@github.com:dev9seucondominio/foreman4rails.git"
-set :branch, "master"
+set :branch, "app-foreman"
 
 set :pty, true
 set :forward_agent, true
