@@ -99,51 +99,70 @@ Instalar Nginx: gpg --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F
 Adicionar Capistrano 3.4.0, Unicorn e Foreman na Gemfile:	source 'https://rubygems.org'
 
 
-								# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-								gem 'rails', '4.2.4'
-								# Use postgresql as the database for Active Record
-								gem 'pg'
-								# Use SCSS for stylesheets
-								gem 'sass-rails', '~> 5.0'
-								# Use Uglifier as compressor for JavaScript assets
-								gem 'uglifier', '>= 1.3.0'
-								# Use CoffeeScript for .coffee assets and views
-								gem 'coffee-rails', '~> 4.1.0'
-								# See https://github.com/rails/execjs#readme for more supported runtimes
-								# gem 'therubyracer', platforms: :ruby
-								# Use jquery as the JavaScript library
-								gem 'jquery-rails'
-								# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-								gem 'turbolinks'
-								# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-								gem 'jbuilder', '~> 2.0'
-								# bundle exec rake doc:rails generates the API under doc/api.
-								gem 'sdoc', '~> 0.4.0', group: :doc
+                                                                # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+                                                                 gem 'rails', '4.2.4'
+                                                                 # Use postgresql as the database for Active Record
+                                                                 #gem 'pg'
+                                                                 gem 'sqlite3'
+                                                                 # Use SCSS for stylesheets
+                                                                 gem 'sass-rails', '~> 5.0'
+                                                                # Use Uglifier as compressor for JavaScript assets
+                                                                gem 'uglifier', '>= 1.3.0'
+                                                                # Use CoffeeScript for .coffee assets and views
+                                                                gem 'coffee-rails', '~> 4.1.0'
+                                                                # See https://github.com/rails/execjs#readme for more supported runtimes
+                                                                # gem 'therubyracer', platforms: :ruby
 
-								# Use ActiveModel has_secure_password
-								# gem 'bcrypt', '~> 3.1.7'
-								# Use Unicorn as the app server
-								gem 'unicorn'
+                                                                gem 'gem-wrappers', '~> 1.2', '>= 1.2.7'
 
-								gem 'foreman', '~> 0.78.0'
-								# Use Capistrano for deployment
-								# gem 'capistrano-rails', group: :development
+                                                                # Use jquery as the JavaScript library
+                                                                gem 'jquery-rails'
+                                                                # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+                                                                gem 'turbolinks'
+                                                                # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+                                                                gem 'jbuilder', '~> 2.0'
+                                                                # bundle exec rake doc:rails generates the API under doc/api.
+                                                                gem 'sdoc', '~> 0.4.0', group: :doc
 
-								group :development, :test do
-								  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-								  gem 'byebug'
-								  # Access an IRB console on exception pages or by using <%= console %> in views
-								  gem 'web-console', '~> 2.0'
-								  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-								  gem 'spring'
-								end
-								group :development do
-								  gem 'capistrano', '~> 3.4.0'
-								  gem 'capistrano-bundler', '~> 1.1.4'
-								  gem 'capistrano-rails', '~> 1.1.3'
-								  # Add this if you're using rvm
-								  gem 'capistrano-rvm', github: "capistrano/rvm"
-								end
+                                                                # Use ActiveModel has_secure_password
+                                                                # gem 'bcrypt', '~> 3.1.7'
+
+                                                                # Use Unicorn as the app server
+                                                                gem 'unicorn'
+
+                                                                gem 'foreman', '~> 0.78.0'
+
+                                                                gem 'capistrano-safe-deploy-to'
+                                                                gem 'sidekiq'
+
+                                                                # Use Capistrano for deployment
+                                                                # gem 'capistrano-rails', group: :development
+
+                                                                gem "codeclimate-test-reporter", group: :test, require: nil
+
+                                                                 group :development, :test do
+                                                                   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+                                                                   gem 'byebug'
+
+                                                                   # Access an IRB console on exception pages or by using <%= console %> in views
+                                                                   gem 'web-console', '~> 2.0'
+
+                                                                   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+                                                                   gem 'spring'
+                                                                 end
+
+                                                                 group :development do
+                                                                   gem 'capistrano', '~> 3.4.0'
+                                                                   gem 'capistrano-bundler', '~> 1.1.4'
+                                                                   gem 'capistrano-rails', '~> 1.1.3'
+                                                                 #  gem 'capistrano-unicorn-nginx', '~> 3.2.0'
+                                                                   # gem 'capistrano-safe-deploy-to', '~> 1.1.1'
+
+                                                                   # Add this if you're using rvm
+                                                                   gem 'capistrano-rvm', github: "capistrano/rvm"
+                                                                 end
+
+
 
 
 
@@ -157,34 +176,39 @@ Run: bundle --binstubs
 
 
 Adicionar ao Capfile:	# Load DSL and set up stages
-			require 'capistrano/setup'
-			# Include default deployment tasks
-			require 'capistrano/deploy'
+                        require 'capistrano/setup'
 
-			# Include tasks from other gems included in your Gemfile
-			#
-			# For documentation on these, see for example:
-			#
-			#   https://github.com/capistrano/rvm
-			#   https://github.com/capistrano/rbenv
-			#   https://github.com/capistrano/chruby
-			#   https://github.com/capistrano/bundler
-			#   https://github.com/capistrano/rails
-			#   https://github.com/capistrano/passenger
-			#
-			require 'capistrano/rvm'
-			set :rvm_type, :user
-			set :rvm_ruby_version, '2.2.3-p173'
-			# require 'capistrano/rbenv'
-			# require 'capistrano/chruby'
-			require 'capistrano/rails'
-			require 'capistrano/bundler'
-			require 'capistrano/rails/assets'
-			# require 'capistrano/rails/migrations'
-			# require 'capistrano/passenger'
+                        # Include default deployment tasks
+                        require 'capistrano/deploy'
 
-			# Load custom tasks from `lib/capistrano/tasks` if you have any defined
-			Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
+                        # Include tasks from other gems included in your Gemfile
+                        #
+                        # For documentation on these, see for example:
+                        #
+                        #   https://github.com/capistrano/rvm
+                        #   https://github.com/capistrano/rbenv
+                        #   https://github.com/capistrano/chruby
+                        #   https://github.com/capistrano/bundler
+                        #   https://github.com/capistrano/rails
+                        #   https://github.com/capistrano/passenger
+                        #
+                        require 'capistrano/rvm'
+                        set :rvm_type, :user
+                        set :rvm_ruby_version, '2.2.3-p173'
+                        # require 'capistrano/rbenv'
+                        # require 'capistrano/chruby'
+                        require 'capistrano/rails'
+                        require 'capistrano/bundler'
+                        require 'capistrano/rails/assets'
+                        # require 'capistrano/rails/migrations'
+                        # require 'capistrano/passenger'
+                        #require 'capistrano/unicorn_nginx'
+                        # require 'rvm1/capistrano3'
+                        require 'capistrano/safe_deploy_to'
+
+                        # Load custom tasks from `lib/capistrano/tasks` if you have any defined
+                        Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
+
 
 
 
@@ -210,88 +234,108 @@ Adicionar ao deploy.rb: # config valid only for current version of Capistrano
 			set :branch, "master"
 
 			set :pty, true
-			set :forward_agent, true
+                        set :forward_agent, true
 
-			# Default value for :linked_files is []
-			set :linked_files, %w{config/database.yml config/secrets.yml}
+                        # Default value for :linked_files is []
+                        #set :linked_files, %w{config/database.yml config/secrets.yml}
 
-			# Default value for linked_dirs is []
-			set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-
-			after "deploy", "deploy:cleanup" # keep only the last 5 releases
-
-  			namespace :deploy do
-    			  %w[start stop restart].each do |command|
-      			    desc "#{command} unicorn server"
-			    task command do
-        		      on roles(:app), except: {no_release: true} do
-				run "/etc/init.d/unicorn_foreman4rails #{command}" # Using unicorn as the app server
-        		      end
-      			    end
-    			  end
-
-  			  task :setup_config do
-    			    on roles(:app) do
-		              sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/nginx.conf /etc/nginx/sites-enabled/foreman4rails"
-		              sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/unicorn_ini.sh /etc/init.d/unicorn_foreman4rails"
-		              execute "chmod +x /etc/init.d/unicorn_foreman4rails"
-		              #put File.read("config/database.yml"), "#home/deploy/apps/foreman4rails/shared/config/database.yml"
-		              puts "Now edit the config files in #{shared_path}."
-    			    end
-  			  end
-  			  after "deploy", "deploy:setup_config"
-
-  			  desc "Make sure local git is in sync with remote."
-  			  task :check_revision do
-    			    on roles(:web) do
-      			      unless `git rev-parse HEAD` == `git rev-parse origin/master`
-            			puts "WARNING: HEAD is not the same as origin/master"
-				puts "Run `git push` to sync changes."
-        			exit
-      			      end
-       			    end
-  			  end
-  			  before "deploy", "deploy:check_revision"
-		        end
-
-		        namespace :foreman do
-			  desc "Export the Procfile to Ubuntu's upstart scripts"
-			  task :export do
-			    on roles(:app) do
-			        execute "sudo chmod -R 1777 /etc/init/"
-        			execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init --procfile /home/deploy/apps/foreman4rails/current/Procfile --app=#{fetch(:application)} --user=#{fetch(:user)}"
-        			execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
-        			execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf"
-				end
-			  end
-
-			  desc "Start the application services"
-			  task :start do
-			    on roles(:app) do
-			        execute "start #{fetch(:application)}"
-			    end
-			  end
-
-			  desc "Stop the application services"
-			  task :stop do
-			    on roles(:app) do
-			        execute "stop #{fetch(:application)}"
-			    end
-			  end
-
-			  desc "Restart the application services"
-			  task :restart do
-			    on roles(:app) do
-			#        execute "sudo stop #{fetch(:application)}"
-			        execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
-			    end
-			  end
-			end
+                        # Default value for linked_dirs is []
+                        set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 
-			after "deploy:setup_config", "foreman:export"
-			# after "foreman:export", "foreman:goforeman"
-			after "foreman:export", "foreman:restart"
+
+                        after "deploy", "deploy:cleanup" # keep only the last 5 releases
+
+                        namespace :deploy do
+                          # %w[start stop restart].each do |command|
+                          #   desc "#{command} unicorn server"
+                          #   task command do
+                          #     on roles(:app), except: {no_release: true} do
+                          #       run "/etc/init.d/unicorn_foreman4rails #{command}" # Using unicorn as the app server
+                          #     end
+                          #   end
+                          # end
+
+                           task :setup_config do
+                             on roles(:app) do
+                               sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/nginx.conf /etc/nginx/sites-enabled/foreman4rails"
+                               sudo "ln -nfs /home/deploy/apps/foreman4rails/current/config/unicorn_ini.sh /etc/init.d/unicorn_foreman4rails"
+                               execute "chmod +x /etc/init.d/unicorn_foreman4rails"
+                         #      put File.read("config/database.yml"), "/home/deploy/apps/foreman4rails/shared/config/database.yml"
+                               puts "Now edit the config files in #{shared_path}."
+                             end
+                           end
+                           after "deploy", "deploy:setup_config"
+
+                          desc "Make sure local git is in sync with remote."
+                          task :check_revision do
+                            on roles(:web) do
+                              unless `git rev-parse HEAD` == `git rev-parse origin/app-foreman`
+                                puts "WARNING: HEAD is not the same as origin/app-foreman"
+                                puts "Run `git push` to sync changes."
+                                exit
+                              end
+                            end
+                          end
+                          before "deploy", "deploy:check_revision"
+                        end
+
+                        namespace :foreman do
+                          desc "Export the Procfile to Ubuntu's upstart scripts"
+                          task :export do
+                            on roles(:app) do
+                              execute "sudo chmod -R 1777 /etc/init/"
+                              execute "/home/deploy/.rvm/bin/rvm all do foreman export upstart /etc/init -f /home/deploy/apps/foreman4rails/current/Procfile -a #{fetch(:application)} -u #{fetch(:user)}"
+                              execute "echo 'exec /home/deploy/.rvm/bin/rvm all do foreman start' >> /etc/init/foreman4rails-web-1.conf"
+                              execute "sudo chmod 777 /etc/init/foreman4rails.conf /etc/init/foreman4rails-web.conf /etc/init/foreman4rails-web-1.conf /etc/init/foreman4rails-worker.conf /etc/init/foreman4rails-worker-1.conf"
+                            end
+                          end
+
+                          desc "Start the application services"
+                          task :start do
+                            on roles(:app) do
+                              execute "sudo start #{fetch(:application)}"
+                            end
+                          end
+
+                          desc "Stop the application services"
+                          task :stop do
+                            on roles(:app) do
+                              execute "sudo stop #{fetch(:application)}"
+                            end
+                          end
+
+                          desc "Restart the application services"
+                          task :restart do
+                            on roles(:app) do
+                              execute "sudo start #{fetch(:application)} || sudo restart #{fetch(:application)}"
+                            end
+                          end
+                        end
+
+                        namespace :nginx do
+                          desc "Install nginx"
+                          task :install do
+                            on roles(:web) do
+                              execute "sudo apt-get -y install nginx-full"
+                            end
+                          end
+                        end
+                        before "deploy", "nginx:install"
+
+                        namespace :nodejs do
+                          desc "Install nodejs"
+                          task :install do
+                            on roles(:web) do
+                              execute "sudo apt-get -y update"
+                              execute "sudo apt-get -y install nodejs"
+                            end
+                          end
+                        end
+                        before "deploy", "nodejs:install"
+
+                        after "deploy", "foreman:export"
+                        after "foreman:export", "foreman:restart"
 
 
 
@@ -342,30 +386,39 @@ Criar nginx.conf na pasta config e adiconar o conteúdo:	upstream unicorn {
 
 
 
-Criar unicorn.conf na pasta config e adiconar o conteúdo:	# Define your root directory
-								root = "/home/deploy/apps/foreman4rails/current"
+Criar unicorn_development.conf na pasta config e adiconar o conteúdo:	# config/unicorn.rb
+                                                                        worker_processes 1
 
-								# Define worker directory for Unicorn
-								working_directory root
+                                                                        timeout 30
 
-								# Location of PID file
-								pid "#{root}/tmp/pids/unicorn.pid"
 
-								# Define Log paths
-								stderr_path "#{root}/log/unicorn.log"
-								stdout_path "#{root}/log/unicorn.log"
 
-								# Listen on a UNIX data socket
-								listen "/tmp/unicorn.foreman4rails.sock"
 
-								# 16 worker processes for production environment
-								worker_processes 16
 
-								# Load rails before forking workers for better worker spawn time
-								preload_app true
+Criar unicorn_production.conf na pasta config e adiconar o conteúdo:    # Define your root directory
+                                                                        root = "/home/deploy/apps/foreman4rails/current"
 
-								# Restart workes hangin' out for more than 240 secs
-								timeout 240
+                                                                        # Define worker directory for Unicorn
+                                                                        working_directory = "/home/deploy/apps/foreman4rails/current"
+
+                                                                        # Location of PID file
+                                                                        pid "#{root}/tmp/pids/unicorn.pid"
+
+                                                                        # Define Log paths
+                                                                        stderr_path "#{root}/log/unicorn-err.log"
+                                                                        stdout_path "#{root}/log/unicorn-out.log"
+
+                                                                        # Listen on a UNIX data socket
+                                                                        listen "/tmp/unicorn.foreman4rails.sock"
+
+                                                                        # 1 worker process for production environment
+                                                                        worker_processes 1
+
+                                                                        # Load rails before forking workers for better worker spawn time
+                                                                        preload_app true
+
+                                                                        # Restart workes hangin' out for more than 240 secs
+                                                                        timeout 240
 
 
 
@@ -469,7 +522,8 @@ Adicionar a routes.rb: Rails.application.routes.draw do
 
 
 
-Criar Procfile e adicionar: web: bundle exec unicorn -E production -c /home/deploy/apps/foreman4rails/current/config/unicorn.rb
+Criar Procfile e adicionar: web: bundle exec unicorn -p $PORT -E production -c /home/deploy/apps/foreman4rails/current/config/unicorn_production.rb --no-default-middleware
+                            worker: bundle exec sidekiq -e production
 
 
 
